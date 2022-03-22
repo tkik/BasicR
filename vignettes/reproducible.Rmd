@@ -9,6 +9,11 @@ vignette: >
 
 # Reproducible programming
 
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
+
+
 ## General rules
 
 1. the scripts should be written in a way, that either you, or someone else will be able to run it anytime.

@@ -8,66 +8,6 @@ vignette: >
 ---
 
 
-# Useful packages:
-
-## Interactive visualization:
-
-`plotly`
-`ggplotly`
-`Glimma`
-
-## nice tables in Rmarkdown
-
-`DT` 
-
-## enrichment analysis 
-
-`clusterProfiler`
-
-## annotation of genomic regions
-
-`annotatr`
-
-## Gene expression, sequencing
-
-`DESeq2`
-`EdgeR`
-
-## mutation data
-
-`MAFtools`
-
-## Visualization genomic regions
-
-`Gviz`
-
-## Handling genomic data (e.g. bam files)
-
-`rtracklayer`
-
-## Methylation data
-
-### Array
-
-`minfi`
-`RnBeads`
-
-### Sequencing
-
-`methrix`
-`bsseq`
-
-## Visualization, heatmaps
-
-`pheatmap`
-`Complexheatmap`
-
-## Nice colors palettes
-
-`ggsci`
-`scico`
-
-
 # Funtions in R
 
 R is a function-oriented language. Basically every object manipulation is done with functions. 
@@ -193,4 +133,10 @@ Useful functions:
 `debug()`
 `options(error=recover)`
 `options(error=stop)`
+
+
+```{r, echo = FALSE, out.width = "70%", eval=TRUE}
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/debugging.jpg?raw=true", dpi = 100)
+```
+
 
