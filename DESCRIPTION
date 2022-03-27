@@ -53,6 +53,6 @@ Suggests:
     methrix,
     annotatr
 VignetteBuilder: knitr
-URL: https://github.com/CompEpigen/BasicR
-BugReports: https://github.com/CompEpigen/BasicR/issues
+URL: https://github.com/tkik/BasicR
+BugReports: https://github.com/tkik/BasicR/issues
 DockerImage: tothreka/basicr:latest
