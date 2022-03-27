@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ```{r}
 Sys.setlocale("LC_TIME", "English")
 
-messy_data <- read.delim("../data/messy_data.txt", stringsAsFactors = F)
+messy_data <- read.delim("../inst/extdata/messy_data.txt", stringsAsFactors = F)
 
 messy_data$Patient.id <- toupper(messy_data$Patient.id)
 messy_data$Patient.id <- gsub("TCGA ", "TCGA_", messy_data$Patient.id)
@@ -71,20 +71,26 @@ messy_data$TNM <- NULL
 ```{r}
 library(tidyverse)
 library(readxl)
+library(janitor)
 
-messy_data <- read_excel("../data/messy_data.xlsx")
+messy_data <- read_excel("../inst/extdata/messy_data.xlsx")
+
+messy_data <- read_excel("../inst/extdata/messy_data.xlsx", n_max = 18)
 
 messy_data <- messy_data %>% 
-  select_all(~gsub(" ", ".", .))
+  select_all(~gsub(" ", ".", .)) %>%
+  clean_names() %>% 
+  remove_empty( which = c("rows","cols"))
+  
 
 messy_data <- messy_data %>%
-  mutate(Patient.id=toupper(Patient.id)) %>%
-  mutate(Patient.id=gsub(" ", "_", Patient.id), 
-         Age=round(as.numeric((Date.of.diagnosis-Date.of.birth)/365), digits = 0),
-         N=substr(TNM, 3, 4), 
-         M=substr(TNM, 5, 6), 
-         TNM=NULL) %>% 
-         mutate(enzyme.level=ifelse(enzyme.level>600, NA, enzyme.level))
+  mutate(patient_id=toupper(patient_id)) %>%
+  mutate(patient_id=gsub(" ", "_", patient_id), 
+         age=round(as.numeric((date_of_diagnosis-date_of_birth)/365), digits = 0),
+         N=substr(tnm, 3, 4), 
+         M=substr(tnm, 5, 6), 
+         tnm=NULL) %>% 
+         mutate(enzyme_level=ifelse(enzyme_level>600, NA, enzyme_level))
 
 
 

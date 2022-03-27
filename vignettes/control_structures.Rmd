@@ -177,7 +177,11 @@ colmean
 
 ```{r}
 lt <- list(c(1,2,4), c(4,52,5,3,2), c(2,3,5,2,2))
-lapply(lt, length)
+lt2 <- lapply(lt, mean)
+
+for (i in 1:length(lt)){
+  print(length(lt[[i]]))
+}
 ```
 
 
