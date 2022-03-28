@@ -1,18 +1,4 @@
-url: https://CompEpigen.github.io/BasicR
-
+url: https://compepigen.github.io/BasicR/
 template:
-  params:
-    bootswatch: flatly
-    #ganalytics: UA-99999999-9
-
-home:
-  title: "Basic R course"
-  type: inverse
-
-
-navbar:
-  right:
-   - icon: fa-github
-     href: https://github.com/CompEpigen/BasicR
-
+  bootstrap: 5
 

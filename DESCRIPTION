@@ -59,6 +59,8 @@ Suggests:
     gapminder, 
     plotly
 VignetteBuilder: knitr
-URL: https://github.com/tkik/BasicR
+URL: https://github.com/tkik/BasicR,
+    https://tkik.github.io/BasicR/,
+    https://compepigen.github.io/BasicR/
 BugReports: https://github.com/tkik/BasicR/issues
 #DockerImage: tothreka/basicr:latest

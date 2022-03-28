@@ -1,5 +1,5 @@
 ---
-title: "Annotating the results of Array-based DNA methylation data"
+title: "DNA methylation"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{DNA methylation}
