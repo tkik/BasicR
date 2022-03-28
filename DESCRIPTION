@@ -51,7 +51,13 @@ Suggests:
     TxDb.Hsapiens.UCSC.hg19.knownGene,
     clusterProfiler,
     methrix,
-    annotatr
+    annotatr, 
+    nycflights13,
+    magrittr,
+    janitor,
+    readr, 
+    gapminder, 
+    plotly
 VignetteBuilder: knitr
 URL: https://github.com/tkik/BasicR
 BugReports: https://github.com/tkik/BasicR/issues
