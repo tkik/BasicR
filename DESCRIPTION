@@ -61,4 +61,4 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://github.com/tkik/BasicR
 BugReports: https://github.com/tkik/BasicR/issues
-DockerImage: tothreka/basicr:latest
+#DockerImage: tothreka/basicr:latest
