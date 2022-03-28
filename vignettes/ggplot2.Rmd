@@ -43,11 +43,14 @@ library(ggplot2)
 ggplot(housing, aes(x = Home.Value)) +
   geom_histogram()
 
-ggplot(filter(housing, State %in% c("MA", "TX")))+
+
+
+housing %>% 
+filter(State %in% c("MA", "TX")) %>% 
+ggplot()+
   geom_point(aes(x=Date,
-           y=Home.Value), color="red")+
-  geom_point(aes(x=Date,
-           y=Home.Value), color="black")
+           y=Home.Value, color=State))+
+  geom_point(aes(x=Land.Value, y=Structure.Cost))
 
 
 ```
@@ -61,7 +64,8 @@ Aesthetic is something one can see and related to the dataset. Geometric objects
 hp2001Q1 <- filter(housing, Date == 2001.25) 
 ggplot(hp2001Q1,
        aes(y = Structure.Cost, x = Land.Value)) +
-  geom_point()
+  geom_point(aes(x=Date,
+           y=Home.Value))
 
 
 ```
@@ -94,6 +98,7 @@ p1 +
   geom_text_repel(aes(label=State), size = 3)
 
 ```
+
 Aesthetics vs. assignments
 
 ```{r}
@@ -138,6 +143,8 @@ p4 <- p3 + geom_point(aes(color = Date),
                        alpha = 0.5,
                        size = 1.5,
                        position = position_jitter(width = 0.25, height = 0))
+
+
 ```
 
 ```{r}
@@ -151,7 +158,7 @@ p4 +
   scale_color_continuous(name="",
                          breaks = c(1976, 1994, 2013),
                          labels = c("'76", "'94", "'13"),
-                         low = "blue", high = "red")
+                         type="viridis")
 
 
 p4 +
@@ -169,8 +176,12 @@ p4 +
 ## Faceting
 
 ```{r}
-p5 <- ggplot(housing, aes(x = Date, y = Home.Value))
+
+p5 <- housing %>% 
+filter(State %in% c("MA", "TX")) %>% 
+ggplot(aes(x = Date, y = Home.Value))
 p5 + geom_line(aes(color = State))  
+
 ```
 
 
@@ -250,7 +261,15 @@ ggplot(home.land.byyear,
 9. change axis labels
 10 Flip the coordinates
 11. Change the theme to theme_bw
+
 ```{r}
+
+data(iris)
+
+
+
+
+
 
 
 ```
