@@ -1,0 +1,132 @@
+---
+title: "Statistics_solutions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Statistics_solutions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r}
+library(tidyverse)
+library(broom)
+library(openintro)
+```
+
+## Exercise
+
+1. Check whether there is a difference in the performance at baseline (`ohs0`) between the males and females. Study the distributions and decide which test to use. 
+
+2. We used an ANOVA to study the distribution of satisfaction.cat and age. Check the distribution of age over the 3 satisfaction.cat groups. Does it pass normality assumptions? If you are unsure, use Kruskal-Wallis test. Hint you can get information using `?kruskal.test`.
+
+3. Use ANOVA or Kruskal-Wallis test to check if there is an association between baseline ohs0 and satisfaction.cat groups.
+
+4. Create a table of retired against satisfaction groups. Does the chi-square test show an association between the two? 
+
+```{r}
+hip<-read.csv("../inst/extdata/hip_data.csv")
+
+hip %>% filter(!is.na(sex)) %>% ggplot(aes(ohs0, fill=sex)) + facet_grid(~sex) + geom_histogram()
+
+
+w<-wilcox.test(ohs0~sex,data=hip %>% filter(!is.na(sex)))
+w
+
+hip<-hip %>% mutate(satisfaction.cat=factor(ifelse(satisfaction<80,"Low",ifelse(between(satisfaction,80,90),"Medium","High")), levels=c("Low","Medium","High")))
+
+hip %>% filter(!is.na(satisfaction.cat)) %>% ggplot(aes(age, fill=satisfaction.cat)) + facet_grid(~satisfaction.cat) + geom_histogram()
+
+
+kr <- hip %>% filter(!is.na(satisfaction.cat)) %>% 
+kruskal.test(age~satisfaction.cat, data=. )
+
+table(hip$retired, hip$satisfaction.cat)
+
+chisq.test(hip$retired, hip$satisfaction.cat)
+
+```
+
+
+
+1\. Fit a new model that uses  `pf_expression_control` to predict `hf_score`, or the total human freedom score. What does the slope tell us in the context of the relationship between human freedom and the amount of political pressure on media content?
+
+
+2\. How does this relationship compare to the relationship between `pf_score` and `pf_expression_control`?
+    Use the $R^2$ values from the two model summaries to compare.
+    Does your `pf_expression_control` seem to predict `hf_score` better?
+    Why or why not?
+
+3\. Check the model diagnostics using appropriate visualisations and evaluate if the model conditions have been met.
+
+4\. Pick another pair of variables of interest and visualise the relationship between them.
+    Do you find the relationship surprising or is it what you expected.
+    Discuss why you were interested in these variables and why you were/were not surprised by the relationship you observed.
+
+```{r}
+hfi_2016 <- hfi %>% 
+  filter(year == 2016)
+
+m1 <- lm(hf_score ~ pf_expression_control, data = hfi_2016)
+
+summary(m1)
+plot(m1)
+
+
+ggplot(data = hfi_2016, aes(x = pf_expression_control, y = hf_score)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+
+
+```
+
+
+
+
+## EXERCISES
+
+
+
+1\. Add region to the model from Q1 using `lm(hf_score ~ pf_expression_control + region, data = hfi_2016)`. What do you notice about the slope between human freedom and expression control? How has it changed from the previous model. Do you think region is a confounder, and think about reasons why this might be so? 
+
+2\. Compare the $R^2$ for the 2 models from Q1 and the previous questions. Is there an increase by adding region? Think about the definition of $R^2$. What does this mean in this context?
+
+3.\ Fit a new model that uses  `ef_money` or monetary measure to predict `hf_score`.  What does the slope tell us in the context of the relationship between human freedom and the economy in the country? 
+
+4\. Again add region to the model from Q3. Compare the slope and $R^2$ with the model from Q3.
+
+6\. Finally fit a model with `ef_money` and `pf_expression_control` as exposures and `hf_score` as outcome.  Compare the slope and $R^2$ from the models from the previous exercises. Could `ef_money` be a confounder? 
+
+7\. Use a linear regression model (and scatter plot) with  `ef_money` as exposure and `pf_expression_control` as outcome, to study whether `ef_money` has an association with `pf_expression_control` as well. This might validate our finding that `ef_money` is a confounder between  `pf_expression_control` as exposure and 
+`hf_score` as outcome from Q6.
+
+
+```{r}
+tidy(m1)
+m2 <- lm(hf_score ~ pf_expression_control + region, data = hfi_2016)
+summary(m1)
+summary(m2)
+
+m3 <- lm(ef_money ~ pf_expression_control, data = hfi_2016)
+m4 <- lm(ef_money ~ pf_expression_control + region, data = hfi_2016)
+
+m4 <- lm(hf_score ~ pf_expression_control + ef_money, data = hfi_2016)
+
+
+ggplot(data = hfi_2016, aes(x = ef_money, y = pf_expression_control)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+m5 <- lm(pf_expression_control ~ ef_money, data = hfi_2016)
+
+
+```
+
+
+

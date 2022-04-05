@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 Statistical tests are used to test assertions about populations. The aim is to determine whether there is enough evidence to _reject_ a null hypothesis. This is shown by way of p-values. 
 
-[How it works for continuous data?](https://shiny.rit.albany.edu/stat/sampdist/interactive%20explanation)
+[How it works for continuous data?](https://shiny.rit.albany.edu/stat/sampdist/)
 
 [How to interpret p-value?](https://rpsychologist.com/pvalue/)
 
@@ -28,7 +28,8 @@ For normal continuous data with one or two groups of interest, the t-test (paire
 
 ```{r}
 library(tidyverse)
-library(openintro)
+if (!require("openintro", quietly = TRUE))
+    install.packages("openintro")
 ```
 
 
@@ -201,12 +202,6 @@ p %>% as.data.frame() %>% ggplot(aes(x=sex,y=Freq,fill=satisfaction.cat)) + geom
 
 ```
 
-You can get relative risk between the sexes of being satisfied at a specific level from the following command.
-
-```{r}
-p[1,]/p[2,]
-```
-
 
 Test this relationship using the `chi.test` command on the contingency table.
 
@@ -231,24 +226,45 @@ The relative risks are close to 1. Alongwith the test, this indicates that there
 
 # Linear associations
 
+The data we're working with is in the openintro package and it's called `hfi`, short for Human Freedom Index.
+
+What type of plot would you use to display the relationship between the personal freedom score, `pf_score`, and `pf_expression_control`? Plot this relationship using the variable `pf_expression_control` as the predictor. Does the relationship look linear? If you knew a country's `pf_expression_control`, or its score out of 10, with 0 being the most, of political pressures and controls on media content, would you be comfortable using a linear model to predict the personal freedom score?
+
+If the relationship looks linear, we can quantify the strength of the relationship with the correlation coefficient.
+
+
 ```{r}
 
-hip %>% 
-  ggplot()+geom_point(aes(age, weight))
+hfi_2016 <- hfi %>% 
+  filter(year == 2016)
 
 
-hip %>%
-  filter(!is.na(weight)) %>% 
-  summarise(cor(weight, age))
+hfi_2016 %>% 
+  ggplot()+geom_point(aes(pf_expression_control, pf_score))
+
+
+
+hfi_2016 %>%
+  summarise(cor(pf_expression_control, pf_score))
+
 
 
 ```
 
-Linear regression 
+<span style="font-size:4em;">Correlation is not causation!!! </span> 
+
+
+```{r, echo = FALSE, out.width = "70%", eval=TRUE}
+knitr::include_graphics("https://images.squarespace-cdn.com/content/v1/5bfc8dbab40b9d7dd9054f41/1635480696871-Y3HAE2GV9EUJB5P7UANT/FCUQhjvVUAUAPlh.jpg?format=750w?raw=true", dpi = 100)
+```
+
+
+
+# Linear regression 
 
 ```{r}
 
-m1 <- lm(weight ~ age, data = hip)
+m1 <- lm(pf_score ~ pf_expression_control, data = hfi_2016)
 
 ```
 
@@ -262,20 +278,30 @@ tidy(m1)
 summary(m1)
 ```
 
+Let's consider this output piece by piece.
+First, the formula used to describe the model is shown at the top, in what's displayed as the "Call".
+After the formula you find the five-number summary of the residuals.
+The "Coefficients" table shown next is key; its first column displays the linear model's y-intercept and the coefficient of `pf_expression_control`.
+With this table, we can write down the least squares regression line for the linear model:
+
+$$
+  \hat{y} = 4.28 + 0.542 \times pf\_expression\_control
+$$
+
+This equation tells us two things:
+
+-   For countries with a `pf_expression_control` of 0 (those with the largest amount of political pressure on media content), we expect their mean personal freedom score to be 4.28.
+-   For every 1 unit increase in `pf_expression_control`, we expect a country's mean personal freedom score to increase 0.542 units.
+
+We can assess model fit using $R^2$, the proportion of variability in the response variable that is explained by the explanatory variable.
+We use the `glance()` function to access this information.
+
 ```{r}
 glance(m1)
 ```
 
+For this model, 71.4% of the variability in `pf_score` is explained by `pf_expression_control`.
 
-For this model, 7.7% of the variability in `weight` is explained by `age`.
-
-
-<span style="font-size:4em;">Correlation is not causation!!! </span> 
-
-
-```{r, echo = FALSE, out.width = "70%", eval=TRUE}
-knitr::include_graphics("https://images.squarespace-cdn.com/content/v1/5bfc8dbab40b9d7dd9054f41/1635480696871-Y3HAE2GV9EUJB5P7UANT/FCUQhjvVUAUAPlh.jpg?format=750w?raw=true", dpi = 100)
-```
 
 
 ## Prediction and prediction errors
@@ -283,11 +309,10 @@ knitr::include_graphics("https://images.squarespace-cdn.com/content/v1/5bfc8dbab
 Let's create a scatterplot with the least squares line for `m1` laid on top.
 
 ```{r reg-with-line}
-ggplot(data = hip, aes(x = age, y = weight, color=sex)) +
+ggplot(data = hfi_2016, aes(x = pf_expression_control, y = pf_score)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 ```
-
 
 Here, we are literally adding a layer on top of our plot.
 `geom_smooth` creates the line by fitting a linear model.
@@ -297,8 +322,6 @@ This line can be used to predict $y$ at any value of $x$.
 When predictions are made for values of $x$ that are beyond the range of the observed data, it is referred to as *extrapolation* and is not usually recommended.
 However, predictions made within the range of the data are more reliable.
 They're also used to compute the residuals.
-
-
 
 ## Model diagnostics
 
@@ -310,8 +333,6 @@ We can use the `augment()` function to calculate these.
 ```{r}
 m1_aug <- augment(m1)
 ```
-
-
 
 ###Linearity###
 
@@ -325,8 +346,6 @@ ggplot(data = m1_aug, aes(x = .fitted, y = .resid)) +
   xlab("Fitted values") +
   ylab("Residuals")
 ```
-
-
 
 Notice here that `m1` can also serve as a data set because stored within it are the fitted values ($\hat{y}$) and the residuals.
 Also note that we're getting fancy with the code here.
@@ -347,9 +366,7 @@ ggplot(data = m1_aug, aes(x = .resid)) +
 
 Based on the histogram, does the nearly normal residuals condition appear to be violated? Why or why not?
 
-
-
-###Constant variability###
+### Constant variability
 
 
 ```{r var-res}
@@ -365,7 +382,10 @@ Based on the residuals vs. fitted plot, does the constant variability condition 
 
 
 
+------------------------------------------------------------------------
+
 ## EXERCISES
+
 
 
 1\. Fit a new model that uses  `pf_expression_control` to predict `hf_score`, or the total human freedom score. Using the estimates from the R output, write the equation of the regression line. What does the slope tell us in the context of the relationship between human freedom and the amount of political pressure on media content?
@@ -382,3 +402,39 @@ Based on the residuals vs. fitted plot, does the constant variability condition 
 5\. Pick another pair of variables of interest and visualise the relationship between them.
     Do you find the relationship surprising or is it what you expected.
     Discuss why you were interested in these variables and why you were/were not surprised by the relationship you observed.
+
+
+
+
+
+# MULTIVARIABLE REGRESSION
+
+
+```{r, echo = FALSE, out.width = "70%", eval=TRUE}
+knitr::include_graphics("https://www.researchgate.net/profile/Ian-Wilson-30/publication/299415540/figure/fig1/AS:349820582678528@1460415134350/Possible-relationships-of-a-covariate-and-a-confounder-to-an-exposure-variable-and-an_W640.jpg?raw=true", dpi = 100)
+```
+
+[Source](https://www.researchgate.net/publication/299415540_Confounding_and_causation_in_the_epidemiology_of_lead)
+
+
+## EXERCISES
+
+1\. Copy your model from the previous exercise that uses  `pf_expression_control` to predict Human Freedom or `hf_score`. Using the `tidy` command, what does the slope tell us in the context of the relationship between human freedom and expression control in the country?
+
+2\. Add region to the model from Q1 using `lm(hf_score ~ pf_expression_control + region, data = hfi_2016)`. What do you notice about the slope between human freedom and expression control? How has it changed from the previous model. Do you think region is a confounder, and think about reasons why this might be so? 
+
+3\. Compare the $R^2$ for the 2 models from Q1 and Q2. Is there an increase by adding region? Think about the definition of $R^2$. What does this mean in this context?
+
+4.\ Fit a new model that uses  `ef_money` or monetary measure to predict `hf_score`.  What does the slope tell us in the context of the relationship between human freedom and the economy in the country? 
+
+5\. Again add region to the model from Q4. Compare the slope and $R^2$ with the model from Q4.
+
+6\. Finally fit a model with `ef_money` and `pf_expression_control` as exposures and `hf_score` as outcome.  Compare the slope and $R^2$ from the models from Q1. Could `ef_money` be a confounder? 
+
+7\. Use a linear regression model (and scatter plot) with  `ef_money` as exposure and `pf_expression_control` as outcome, to study whether `ef_money` has an association with `pf_expression_control` as well. This might validate our finding that `ef_money` is a confounder between  `pf_expression_control` as exposure and 
+`hf_score` as outcome from Q6.
+
+
+
+
+
