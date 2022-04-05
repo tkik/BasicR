@@ -4,151 +4,105 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Annotating the results of Array-based DNA methylation data • BasicR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="BasicR">
+<title>DNA methylation • BasicR</title>
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Annotating the results of Array-based DNA methylation data">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="DNA methylation">
 <meta property="og:description" content="BasicR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">BasicR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">BasicR</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/R_data_types.html">R Data types</a>
-    </li>
-    <li>
-      <a href="../articles/S4_classes.html">S4 classes</a>
-    </li>
-    <li>
-      <a href="../articles/S4_classes_exercises.html">S4 classes, exercises</a>
-    </li>
-    <li>
-      <a href="../articles/assignment.html">Assignment</a>
-    </li>
-    <li>
-      <a href="../articles/basic_functions.html">Basic functions</a>
-    </li>
-    <li>
-      <a href="../articles/control_structures.html">Control structures</a>
-    </li>
-    <li>
-      <a href="../articles/data_types_exercises.html">Data types, exercises</a>
-    </li>
-    <li>
-      <a href="../articles/data_types_exercises_solutions.html">Data types, solutions</a>
-    </li>
-    <li>
-      <a href="../articles/enrichment.html">Enrichment analysis</a>
-    </li>
-    <li>
-      <a href="../articles/exercises_control_exercises.html">Control structures, exercises</a>
-    </li>
-    <li>
-      <a href="../articles/exercises_control_solutions.html">Control structures, solutions</a>
-    </li>
-    <li>
-      <a href="../articles/functions_exercises.html">Functions, exercises</a>
-    </li>
-    <li>
-      <a href="../articles/functions_exercises_solutions.html">Functions, solutions</a>
-    </li>
-    <li>
-      <a href="../articles/intro.html">Course introduction</a>
-    </li>
-    <li>
-      <a href="../articles/methylation_analysisRmd.html">Annotating the results of Array-based DNA methylation data</a>
-    </li>
-    <li>
-      <a href="../articles/r_functions.html">Functions, useful packages</a>
-    </li>
-    <li>
-      <a href="../articles/references.html">References</a>
-    </li>
-    <li>
-      <a href="../articles/reproducible.html">Reproducible programming</a>
-    </li>
-    <li>
-      <a href="../articles/reproducible_solutions.html">Reproducible programming, exercises</a>
-    </li>
-    <li>
-      <a href="../articles/set_up_git.html">Set up git</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/CompEpigen/BasicR">
-    <span class="fas fa-github"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/R_data_types.html">R Data types</a>
+    <a class="dropdown-item" href="../articles/S4_classes.html">S4 classes</a>
+    <a class="dropdown-item" href="../articles/S4_classes_exercises.html">S4 classes, exercises</a>
+    <a class="dropdown-item" href="../articles/assignment.html">Assignment</a>
+    <a class="dropdown-item" href="../articles/basic_functions.html">Basic functions</a>
+    <a class="dropdown-item" href="../articles/control_structures.html">Control structures</a>
+    <a class="dropdown-item" href="../articles/data_cleaning.html">Data cleaning with Tidyverse</a>
+    <a class="dropdown-item" href="../articles/data_cleaning_solutions.html">Data cleaning, solutions</a>
+    <a class="dropdown-item" href="../articles/data_types_exercises.html">Data types, exercises</a>
+    <a class="dropdown-item" href="../articles/data_types_exercises_solutions.html">Data types, solutions</a>
+    <a class="dropdown-item" href="../articles/enrichment.html">Enrichment analysis</a>
+    <a class="dropdown-item" href="../articles/exercises_control_exercises.html">Control structures, exercises</a>
+    <a class="dropdown-item" href="../articles/exercises_control_solutions.html">Control structures, solutions</a>
+    <a class="dropdown-item" href="../articles/functions_exercises.html">Functions, exercises</a>
+    <a class="dropdown-item" href="../articles/functions_exercises_solutions.html">Functions, solutions</a>
+    <a class="dropdown-item" href="../articles/ggplot2.html">GGplot2</a>
+    <a class="dropdown-item" href="../articles/ggplot_solutions.html">GGplot solutions</a>
+    <a class="dropdown-item" href="../articles/intro.html">Course introduction</a>
+    <a class="dropdown-item" href="../articles/methylation_analysisRmd.html">DNA methylation</a>
+    <a class="dropdown-item" href="../articles/r_functions.html">Functions, useful packages</a>
+    <a class="dropdown-item" href="../articles/references.html">References</a>
+    <a class="dropdown-item" href="../articles/reproducible.html">Reproducible programming</a>
+    <a class="dropdown-item" href="../articles/reproducible_solutions.html">Reproducible programming, exercises</a>
+    <a class="dropdown-item" href="../articles/resources.html">Resources</a>
+    <a class="dropdown-item" href="../articles/set_up_git.html">Set up git</a>
   </div>
-<!--/.container -->
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/tkik/BasicR/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><script src="methylation_analysisRmd_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Annotating the results of Array-based DNA methylation data</h1>
+
+
+<script src="methylation_analysisRmd_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+  <main id="main"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>DNA methylation</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/CompEpigen/BasicR/blob/master/vignettes/methylation_analysisRmd.Rmd"><code>vignettes/methylation_analysisRmd.Rmd</code></a></small>
-      <div class="hidden name"><code>methylation_analysisRmd.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/tkik/BasicR/blob/HEAD/vignettes/methylation_analysisRmd.Rmd" class="external-link"><code>vignettes/methylation_analysisRmd.Rmd</code></a></small>
+      <div class="d-none name"><code>methylation_analysisRmd.Rmd</code></div>
     </div>
 
     
     
-<div id="visualization" class="section level1">
-<h1 class="hasAnchor">
-<a href="#visualization" class="anchor"></a>Visualization</h1>
+<div class="section level2">
+<h2 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Load the data to the UCSC (IGV) browser to visualize it.</li>
 </ol>
@@ -159,9 +113,9 @@
 <li>Add additional tracks, like functional regions from ENCODE, TFBSs, etc</li>
 </ol>
 </div>
-<div id="location" class="section level1">
-<h1 class="hasAnchor">
-<a href="#location" class="anchor"></a>Location</h1>
+<div class="section level2">
+<h2 id="location">Location<a class="anchor" aria-label="anchor" href="#location"></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Annotate regions using the annotatr package</li>
 </ol>
@@ -186,401 +140,390 @@
 
 
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">data</span><span class="op">[[</span><span class="st">"hypo"</span><span class="op">]</span><span class="op">]</span>  <span class="op">&lt;-</span> <span class="fu">import.bed</span><span class="op">(</span><span class="st">"../inst/extdata/great_significant_hypo.txt"</span><span class="op">)</span>
 <span class="va">data</span><span class="op">[[</span><span class="st">"hyper"</span><span class="op">]</span><span class="op">]</span><span class="op">&lt;-</span> <span class="fu">import.bed</span><span class="op">(</span><span class="st">"../inst/extdata/great_significant_hyper.txt"</span><span class="op">)</span>
 
 
-<span class="va">annots</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'hg19_Hepg2-chromatin'</span><span class="op">)</span>
+<span class="va">annots</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'hg19_Hepg2-chromatin'</span><span class="op">)</span>
 <span class="va">annots_gr</span> <span class="op">=</span> <span class="fu">build_annotations</span><span class="op">(</span>genome <span class="op">=</span> <span class="st">'hg19'</span>, annotations <span class="op">=</span> <span class="va">annots</span><span class="op">)</span></code></pre></div>
-<pre><code>## Building hmms...</code></pre>
-<pre><code>## Downloading chromHMM track for Hepg2</code></pre>
+<pre><code><span class="co">## Building hmms...</span></code></pre>
+<pre><code><span class="co">## Downloading chromHMM track for Hepg2</span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">dataset</span> <span class="kw">in</span> <span class="va">data</span><span class="op">)</span><span class="op">{</span>
-<span class="fu">genome</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"hg19"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">genome</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">genome</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"hg19"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">genome</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">annotate_regions</span><span class="op">(</span><span class="va">dataset</span>, annotations<span class="op">=</span><span class="va">annots_gr</span>, minoverlap <span class="op">=</span> <span class="fl">1L</span>, ignore.strand <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">rnd_annots</span> <span class="op">=</span> <span class="fu">annotate_regions</span><span class="op">(</span>regions <span class="op">=</span> <span class="fu">randomize_regions</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span>,annotations <span class="op">=</span> <span class="va">annots_gr</span>,ignore.strand <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">p_annots</span> <span class="op">=</span> <span class="fu">plot_annotation</span><span class="op">(</span>annotated_regions <span class="op">=</span> <span class="va">result</span>, annotated_random <span class="op">=</span> <span class="va">rnd_annots</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p_annots</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p_annots</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<pre><code>## Annotating...</code></pre>
-<pre><code>## Randomizing regions...</code></pre>
-<pre><code>## Annotating...</code></pre>
-<pre><code>## Warning: `distinct_()` was deprecated in dplyr 0.7.0.
-## Please use `distinct()` instead.
-## See vignette('programming') for more help</code></pre>
-<pre><code>## Annotating...</code></pre>
-<pre><code>## Randomizing regions...</code></pre>
-<pre><code>## Annotating...</code></pre>
+<pre><code><span class="co">## Annotating...</span></code></pre>
+<pre><code><span class="co">## Randomizing regions...</span></code></pre>
+<pre><code><span class="co">## Annotating...</span>
+<span class="co">## Annotating...</span></code></pre>
+<pre><code><span class="co">## Randomizing regions...</span></code></pre>
+<pre><code><span class="co">## Annotating...</span></code></pre>
 <p><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-3-1.png" width="700"><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-3-2.png" width="700"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">background</span> <span class="op">&lt;-</span>  <span class="fu">import.bed</span><span class="op">(</span><span class="st">"../inst/extdata/background.txt"</span><span class="op">)</span>
-<span class="fu">genome</span><span class="op">(</span><span class="va">background</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"hg19"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">genome</span><span class="op">(</span><span class="va">background</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">genome</a></span><span class="op">(</span><span class="va">background</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"hg19"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">genome</a></span><span class="op">(</span><span class="va">background</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 
-<span class="kw">for</span> <span class="op">(</span><span class="va">dataset</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-<span class="fu">genome</span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"hg19"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">genome</span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">background2</span> <span class="op">&lt;-</span> <span class="va">background</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">background</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,<span class="op">]</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">dataset</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">genome</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"hg19"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">genome</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">background2</span> <span class="op">&lt;-</span> <span class="va">background</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/Bimap-envirAPI.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">background</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,<span class="op">]</span>
 <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">annotate_regions</span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span>, annotations<span class="op">=</span><span class="va">annots_gr</span>, minoverlap <span class="op">=</span> <span class="fl">1L</span>, ignore.strand <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">rnd_annots</span> <span class="op">=</span> <span class="fu">annotate_regions</span><span class="op">(</span>regions <span class="op">=</span> <span class="va">background2</span>,annotations <span class="op">=</span> <span class="va">annots_gr</span>,ignore.strand <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">p_annots</span> <span class="op">=</span> <span class="fu">plot_annotation</span><span class="op">(</span>annotated_regions <span class="op">=</span> <span class="va">result</span>, annotated_random <span class="op">=</span> <span class="va">rnd_annots</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p_annots</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p_annots</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<pre><code>## Annotating...
-## Annotating...
-## Annotating...
-## Annotating...</code></pre>
+<pre><code><span class="co">## Annotating...</span>
+<span class="co">## Annotating...</span>
+<span class="co">## Annotating...</span>
+<span class="co">## Annotating...</span></code></pre>
 <p><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-3-3.png" width="700"><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-3-4.png" width="700"></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Try different annotations</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">builtin_annotations</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##   [1] "dm3_genes_1to5kb"                     
-##   [2] "dm6_genes_1to5kb"                     
-##   [3] "galGal5_genes_1to5kb"                 
-##   [4] "hg19_genes_1to5kb"                    
-##   [5] "hg38_genes_1to5kb"                    
-##   [6] "mm9_genes_1to5kb"                     
-##   [7] "mm10_genes_1to5kb"                    
-##   [8] "rn4_genes_1to5kb"                     
-##   [9] "rn5_genes_1to5kb"                     
-##  [10] "rn6_genes_1to5kb"                     
-##  [11] "dm3_genes_promoters"                  
-##  [12] "dm6_genes_promoters"                  
-##  [13] "galGal5_genes_promoters"              
-##  [14] "hg19_genes_promoters"                 
-##  [15] "hg38_genes_promoters"                 
-##  [16] "mm9_genes_promoters"                  
-##  [17] "mm10_genes_promoters"                 
-##  [18] "rn4_genes_promoters"                  
-##  [19] "rn5_genes_promoters"                  
-##  [20] "rn6_genes_promoters"                  
-##  [21] "dm3_genes_cds"                        
-##  [22] "dm6_genes_cds"                        
-##  [23] "galGal5_genes_cds"                    
-##  [24] "hg19_genes_cds"                       
-##  [25] "hg38_genes_cds"                       
-##  [26] "mm9_genes_cds"                        
-##  [27] "mm10_genes_cds"                       
-##  [28] "rn4_genes_cds"                        
-##  [29] "rn5_genes_cds"                        
-##  [30] "rn6_genes_cds"                        
-##  [31] "dm3_genes_5UTRs"                      
-##  [32] "dm6_genes_5UTRs"                      
-##  [33] "galGal5_genes_5UTRs"                  
-##  [34] "hg19_genes_5UTRs"                     
-##  [35] "hg38_genes_5UTRs"                     
-##  [36] "mm9_genes_5UTRs"                      
-##  [37] "mm10_genes_5UTRs"                     
-##  [38] "rn4_genes_5UTRs"                      
-##  [39] "rn5_genes_5UTRs"                      
-##  [40] "rn6_genes_5UTRs"                      
-##  [41] "dm3_genes_exons"                      
-##  [42] "dm6_genes_exons"                      
-##  [43] "galGal5_genes_exons"                  
-##  [44] "hg19_genes_exons"                     
-##  [45] "hg38_genes_exons"                     
-##  [46] "mm9_genes_exons"                      
-##  [47] "mm10_genes_exons"                     
-##  [48] "rn4_genes_exons"                      
-##  [49] "rn5_genes_exons"                      
-##  [50] "rn6_genes_exons"                      
-##  [51] "dm3_genes_firstexons"                 
-##  [52] "dm6_genes_firstexons"                 
-##  [53] "galGal5_genes_firstexons"             
-##  [54] "hg19_genes_firstexons"                
-##  [55] "hg38_genes_firstexons"                
-##  [56] "mm9_genes_firstexons"                 
-##  [57] "mm10_genes_firstexons"                
-##  [58] "rn4_genes_firstexons"                 
-##  [59] "rn5_genes_firstexons"                 
-##  [60] "rn6_genes_firstexons"                 
-##  [61] "dm3_genes_introns"                    
-##  [62] "dm6_genes_introns"                    
-##  [63] "galGal5_genes_introns"                
-##  [64] "hg19_genes_introns"                   
-##  [65] "hg38_genes_introns"                   
-##  [66] "mm9_genes_introns"                    
-##  [67] "mm10_genes_introns"                   
-##  [68] "rn4_genes_introns"                    
-##  [69] "rn5_genes_introns"                    
-##  [70] "rn6_genes_introns"                    
-##  [71] "dm3_genes_intronexonboundaries"       
-##  [72] "dm6_genes_intronexonboundaries"       
-##  [73] "galGal5_genes_intronexonboundaries"   
-##  [74] "hg19_genes_intronexonboundaries"      
-##  [75] "hg38_genes_intronexonboundaries"      
-##  [76] "mm9_genes_intronexonboundaries"       
-##  [77] "mm10_genes_intronexonboundaries"      
-##  [78] "rn4_genes_intronexonboundaries"       
-##  [79] "rn5_genes_intronexonboundaries"       
-##  [80] "rn6_genes_intronexonboundaries"       
-##  [81] "dm3_genes_exonintronboundaries"       
-##  [82] "dm6_genes_exonintronboundaries"       
-##  [83] "galGal5_genes_exonintronboundaries"   
-##  [84] "hg19_genes_exonintronboundaries"      
-##  [85] "hg38_genes_exonintronboundaries"      
-##  [86] "mm9_genes_exonintronboundaries"       
-##  [87] "mm10_genes_exonintronboundaries"      
-##  [88] "rn4_genes_exonintronboundaries"       
-##  [89] "rn5_genes_exonintronboundaries"       
-##  [90] "rn6_genes_exonintronboundaries"       
-##  [91] "dm3_genes_3UTRs"                      
-##  [92] "dm6_genes_3UTRs"                      
-##  [93] "galGal5_genes_3UTRs"                  
-##  [94] "hg19_genes_3UTRs"                     
-##  [95] "hg38_genes_3UTRs"                     
-##  [96] "mm9_genes_3UTRs"                      
-##  [97] "mm10_genes_3UTRs"                     
-##  [98] "rn4_genes_3UTRs"                      
-##  [99] "rn5_genes_3UTRs"                      
-## [100] "rn6_genes_3UTRs"                      
-## [101] "dm3_genes_intergenic"                 
-## [102] "dm6_genes_intergenic"                 
-## [103] "galGal5_genes_intergenic"             
-## [104] "hg19_genes_intergenic"                
-## [105] "hg38_genes_intergenic"                
-## [106] "mm9_genes_intergenic"                 
-## [107] "mm10_genes_intergenic"                
-## [108] "rn4_genes_intergenic"                 
-## [109] "rn5_genes_intergenic"                 
-## [110] "rn6_genes_intergenic"                 
-## [111] "galGal5_cpg_islands"                  
-## [112] "hg19_cpg_islands"                     
-## [113] "hg38_cpg_islands"                     
-## [114] "mm9_cpg_islands"                      
-## [115] "mm10_cpg_islands"                     
-## [116] "rn4_cpg_islands"                      
-## [117] "rn5_cpg_islands"                      
-## [118] "rn6_cpg_islands"                      
-## [119] "galGal5_cpg_shores"                   
-## [120] "hg19_cpg_shores"                      
-## [121] "hg38_cpg_shores"                      
-## [122] "mm9_cpg_shores"                       
-## [123] "mm10_cpg_shores"                      
-## [124] "rn4_cpg_shores"                       
-## [125] "rn5_cpg_shores"                       
-## [126] "rn6_cpg_shores"                       
-## [127] "galGal5_cpg_shelves"                  
-## [128] "hg19_cpg_shelves"                     
-## [129] "hg38_cpg_shelves"                     
-## [130] "mm9_cpg_shelves"                      
-## [131] "mm10_cpg_shelves"                     
-## [132] "rn4_cpg_shelves"                      
-## [133] "rn5_cpg_shelves"                      
-## [134] "rn6_cpg_shelves"                      
-## [135] "galGal5_cpg_inter"                    
-## [136] "hg19_cpg_inter"                       
-## [137] "hg38_cpg_inter"                       
-## [138] "mm9_cpg_inter"                        
-## [139] "mm10_cpg_inter"                       
-## [140] "rn4_cpg_inter"                        
-## [141] "rn5_cpg_inter"                        
-## [142] "rn6_cpg_inter"                        
-## [143] "hg19_chromatin_Gm12878-ActivePromoter"
-## [144] "hg19_chromatin_H1hesc-ActivePromoter" 
-## [145] "hg19_chromatin_Hepg2-ActivePromoter"  
-## [146] "hg19_chromatin_Hmec-ActivePromoter"   
-## [147] "hg19_chromatin_Hsmm-ActivePromoter"   
-## [148] "hg19_chromatin_Huvec-ActivePromoter"  
-## [149] "hg19_chromatin_K562-ActivePromoter"   
-## [150] "hg19_chromatin_Nhek-ActivePromoter"   
-## [151] "hg19_chromatin_Nhlf-ActivePromoter"   
-## [152] "hg19_chromatin_Gm12878-WeakPromoter"  
-## [153] "hg19_chromatin_H1hesc-WeakPromoter"   
-## [154] "hg19_chromatin_Hepg2-WeakPromoter"    
-## [155] "hg19_chromatin_Hmec-WeakPromoter"     
-## [156] "hg19_chromatin_Hsmm-WeakPromoter"     
-## [157] "hg19_chromatin_Huvec-WeakPromoter"    
-## [158] "hg19_chromatin_K562-WeakPromoter"     
-## [159] "hg19_chromatin_Nhek-WeakPromoter"     
-## [160] "hg19_chromatin_Nhlf-WeakPromoter"     
-## [161] "hg19_chromatin_Gm12878-PoisedPromoter"
-## [162] "hg19_chromatin_H1hesc-PoisedPromoter" 
-## [163] "hg19_chromatin_Hepg2-PoisedPromoter"  
-## [164] "hg19_chromatin_Hmec-PoisedPromoter"   
-## [165] "hg19_chromatin_Hsmm-PoisedPromoter"   
-## [166] "hg19_chromatin_Huvec-PoisedPromoter"  
-## [167] "hg19_chromatin_K562-PoisedPromoter"   
-## [168] "hg19_chromatin_Nhek-PoisedPromoter"   
-## [169] "hg19_chromatin_Nhlf-PoisedPromoter"   
-## [170] "hg19_chromatin_Gm12878-StrongEnhancer"
-## [171] "hg19_chromatin_H1hesc-StrongEnhancer" 
-## [172] "hg19_chromatin_Hepg2-StrongEnhancer"  
-## [173] "hg19_chromatin_Hmec-StrongEnhancer"   
-## [174] "hg19_chromatin_Hsmm-StrongEnhancer"   
-## [175] "hg19_chromatin_Huvec-StrongEnhancer"  
-## [176] "hg19_chromatin_K562-StrongEnhancer"   
-## [177] "hg19_chromatin_Nhek-StrongEnhancer"   
-## [178] "hg19_chromatin_Nhlf-StrongEnhancer"   
-## [179] "hg19_chromatin_Gm12878-WeakEnhancer"  
-## [180] "hg19_chromatin_H1hesc-WeakEnhancer"   
-## [181] "hg19_chromatin_Hepg2-WeakEnhancer"    
-## [182] "hg19_chromatin_Hmec-WeakEnhancer"     
-## [183] "hg19_chromatin_Hsmm-WeakEnhancer"     
-## [184] "hg19_chromatin_Huvec-WeakEnhancer"    
-## [185] "hg19_chromatin_K562-WeakEnhancer"     
-## [186] "hg19_chromatin_Nhek-WeakEnhancer"     
-## [187] "hg19_chromatin_Nhlf-WeakEnhancer"     
-## [188] "hg19_chromatin_Gm12878-Insulator"     
-## [189] "hg19_chromatin_H1hesc-Insulator"      
-## [190] "hg19_chromatin_Hepg2-Insulator"       
-## [191] "hg19_chromatin_Hmec-Insulator"        
-## [192] "hg19_chromatin_Hsmm-Insulator"        
-## [193] "hg19_chromatin_Huvec-Insulator"       
-## [194] "hg19_chromatin_K562-Insulator"        
-## [195] "hg19_chromatin_Nhek-Insulator"        
-## [196] "hg19_chromatin_Nhlf-Insulator"        
-## [197] "hg19_chromatin_Gm12878-TxnTransition" 
-## [198] "hg19_chromatin_H1hesc-TxnTransition"  
-## [199] "hg19_chromatin_Hepg2-TxnTransition"   
-## [200] "hg19_chromatin_Hmec-TxnTransition"    
-## [201] "hg19_chromatin_Hsmm-TxnTransition"    
-## [202] "hg19_chromatin_Huvec-TxnTransition"   
-## [203] "hg19_chromatin_K562-TxnTransition"    
-## [204] "hg19_chromatin_Nhek-TxnTransition"    
-## [205] "hg19_chromatin_Nhlf-TxnTransition"    
-## [206] "hg19_chromatin_Gm12878-TxnElongation" 
-## [207] "hg19_chromatin_H1hesc-TxnElongation"  
-## [208] "hg19_chromatin_Hepg2-TxnElongation"   
-## [209] "hg19_chromatin_Hmec-TxnElongation"    
-## [210] "hg19_chromatin_Hsmm-TxnElongation"    
-## [211] "hg19_chromatin_Huvec-TxnElongation"   
-## [212] "hg19_chromatin_K562-TxnElongation"    
-## [213] "hg19_chromatin_Nhek-TxnElongation"    
-## [214] "hg19_chromatin_Nhlf-TxnElongation"    
-## [215] "hg19_chromatin_Gm12878-WeakTxn"       
-## [216] "hg19_chromatin_H1hesc-WeakTxn"        
-## [217] "hg19_chromatin_Hepg2-WeakTxn"         
-## [218] "hg19_chromatin_Hmec-WeakTxn"          
-## [219] "hg19_chromatin_Hsmm-WeakTxn"          
-## [220] "hg19_chromatin_Huvec-WeakTxn"         
-## [221] "hg19_chromatin_K562-WeakTxn"          
-## [222] "hg19_chromatin_Nhek-WeakTxn"          
-## [223] "hg19_chromatin_Nhlf-WeakTxn"          
-## [224] "hg19_chromatin_Gm12878-Repressed"     
-## [225] "hg19_chromatin_H1hesc-Repressed"      
-## [226] "hg19_chromatin_Hepg2-Repressed"       
-## [227] "hg19_chromatin_Hmec-Repressed"        
-## [228] "hg19_chromatin_Hsmm-Repressed"        
-## [229] "hg19_chromatin_Huvec-Repressed"       
-## [230] "hg19_chromatin_K562-Repressed"        
-## [231] "hg19_chromatin_Nhek-Repressed"        
-## [232] "hg19_chromatin_Nhlf-Repressed"        
-## [233] "hg19_chromatin_Gm12878-Heterochrom/lo"
-## [234] "hg19_chromatin_H1hesc-Heterochrom/lo" 
-## [235] "hg19_chromatin_Hepg2-Heterochrom/lo"  
-## [236] "hg19_chromatin_Hmec-Heterochrom/lo"   
-## [237] "hg19_chromatin_Hsmm-Heterochrom/lo"   
-## [238] "hg19_chromatin_Huvec-Heterochrom/lo"  
-## [239] "hg19_chromatin_K562-Heterochrom/lo"   
-## [240] "hg19_chromatin_Nhek-Heterochrom/lo"   
-## [241] "hg19_chromatin_Nhlf-Heterochrom/lo"   
-## [242] "hg19_chromatin_Gm12878-Repetitive/CNV"
-## [243] "hg19_chromatin_H1hesc-Repetitive/CNV" 
-## [244] "hg19_chromatin_Hepg2-Repetitive/CNV"  
-## [245] "hg19_chromatin_Hmec-Repetitive/CNV"   
-## [246] "hg19_chromatin_Hsmm-Repetitive/CNV"   
-## [247] "hg19_chromatin_Huvec-Repetitive/CNV"  
-## [248] "hg19_chromatin_K562-Repetitive/CNV"   
-## [249] "hg19_chromatin_Nhek-Repetitive/CNV"   
-## [250] "hg19_chromatin_Nhlf-Repetitive/CNV"   
-## [251] "hg19_enhancers_fantom"                
-## [252] "hg38_enhancers_fantom"                
-## [253] "mm9_enhancers_fantom"                 
-## [254] "mm10_enhancers_fantom"                
-## [255] "hg19_lncrna_gencode"                  
-## [256] "hg38_lncrna_gencode"                  
-## [257] "mm10_lncrna_gencode"                  
-## [258] "dm3_basicgenes"                       
-## [259] "dm6_basicgenes"                       
-## [260] "galGal5_basicgenes"                   
-## [261] "hg19_basicgenes"                      
-## [262] "hg38_basicgenes"                      
-## [263] "mm9_basicgenes"                       
-## [264] "mm10_basicgenes"                      
-## [265] "rn4_basicgenes"                       
-## [266] "rn5_basicgenes"                       
-## [267] "rn6_basicgenes"                       
-## [268] "galGal5_cpgs"                         
-## [269] "hg19_cpgs"                            
-## [270] "hg38_cpgs"                            
-## [271] "mm9_cpgs"                             
-## [272] "mm10_cpgs"                            
-## [273] "rn4_cpgs"                             
-## [274] "rn5_cpgs"                             
-## [275] "rn6_cpgs"                             
-## [276] "hg19_Gm12878-chromatin"               
-## [277] "hg19_H1hesc-chromatin"                
-## [278] "hg19_Hepg2-chromatin"                 
-## [279] "hg19_Hmec-chromatin"                  
-## [280] "hg19_Hsmm-chromatin"                  
-## [281] "hg19_Huvec-chromatin"                 
-## [282] "hg19_K562-chromatin"                  
-## [283] "hg19_Nhek-chromatin"                  
-## [284] "hg19_Nhlf-chromatin"</code></pre>
+<pre><code><span class="co">##   [1] "dm3_genes_1to5kb"                     </span>
+<span class="co">##   [2] "dm6_genes_1to5kb"                     </span>
+<span class="co">##   [3] "galGal5_genes_1to5kb"                 </span>
+<span class="co">##   [4] "hg19_genes_1to5kb"                    </span>
+<span class="co">##   [5] "hg38_genes_1to5kb"                    </span>
+<span class="co">##   [6] "mm9_genes_1to5kb"                     </span>
+<span class="co">##   [7] "mm10_genes_1to5kb"                    </span>
+<span class="co">##   [8] "rn4_genes_1to5kb"                     </span>
+<span class="co">##   [9] "rn5_genes_1to5kb"                     </span>
+<span class="co">##  [10] "rn6_genes_1to5kb"                     </span>
+<span class="co">##  [11] "dm3_genes_promoters"                  </span>
+<span class="co">##  [12] "dm6_genes_promoters"                  </span>
+<span class="co">##  [13] "galGal5_genes_promoters"              </span>
+<span class="co">##  [14] "hg19_genes_promoters"                 </span>
+<span class="co">##  [15] "hg38_genes_promoters"                 </span>
+<span class="co">##  [16] "mm9_genes_promoters"                  </span>
+<span class="co">##  [17] "mm10_genes_promoters"                 </span>
+<span class="co">##  [18] "rn4_genes_promoters"                  </span>
+<span class="co">##  [19] "rn5_genes_promoters"                  </span>
+<span class="co">##  [20] "rn6_genes_promoters"                  </span>
+<span class="co">##  [21] "dm3_genes_cds"                        </span>
+<span class="co">##  [22] "dm6_genes_cds"                        </span>
+<span class="co">##  [23] "galGal5_genes_cds"                    </span>
+<span class="co">##  [24] "hg19_genes_cds"                       </span>
+<span class="co">##  [25] "hg38_genes_cds"                       </span>
+<span class="co">##  [26] "mm9_genes_cds"                        </span>
+<span class="co">##  [27] "mm10_genes_cds"                       </span>
+<span class="co">##  [28] "rn4_genes_cds"                        </span>
+<span class="co">##  [29] "rn5_genes_cds"                        </span>
+<span class="co">##  [30] "rn6_genes_cds"                        </span>
+<span class="co">##  [31] "dm3_genes_5UTRs"                      </span>
+<span class="co">##  [32] "dm6_genes_5UTRs"                      </span>
+<span class="co">##  [33] "galGal5_genes_5UTRs"                  </span>
+<span class="co">##  [34] "hg19_genes_5UTRs"                     </span>
+<span class="co">##  [35] "hg38_genes_5UTRs"                     </span>
+<span class="co">##  [36] "mm9_genes_5UTRs"                      </span>
+<span class="co">##  [37] "mm10_genes_5UTRs"                     </span>
+<span class="co">##  [38] "rn4_genes_5UTRs"                      </span>
+<span class="co">##  [39] "rn5_genes_5UTRs"                      </span>
+<span class="co">##  [40] "rn6_genes_5UTRs"                      </span>
+<span class="co">##  [41] "dm3_genes_exons"                      </span>
+<span class="co">##  [42] "dm6_genes_exons"                      </span>
+<span class="co">##  [43] "galGal5_genes_exons"                  </span>
+<span class="co">##  [44] "hg19_genes_exons"                     </span>
+<span class="co">##  [45] "hg38_genes_exons"                     </span>
+<span class="co">##  [46] "mm9_genes_exons"                      </span>
+<span class="co">##  [47] "mm10_genes_exons"                     </span>
+<span class="co">##  [48] "rn4_genes_exons"                      </span>
+<span class="co">##  [49] "rn5_genes_exons"                      </span>
+<span class="co">##  [50] "rn6_genes_exons"                      </span>
+<span class="co">##  [51] "dm3_genes_firstexons"                 </span>
+<span class="co">##  [52] "dm6_genes_firstexons"                 </span>
+<span class="co">##  [53] "galGal5_genes_firstexons"             </span>
+<span class="co">##  [54] "hg19_genes_firstexons"                </span>
+<span class="co">##  [55] "hg38_genes_firstexons"                </span>
+<span class="co">##  [56] "mm9_genes_firstexons"                 </span>
+<span class="co">##  [57] "mm10_genes_firstexons"                </span>
+<span class="co">##  [58] "rn4_genes_firstexons"                 </span>
+<span class="co">##  [59] "rn5_genes_firstexons"                 </span>
+<span class="co">##  [60] "rn6_genes_firstexons"                 </span>
+<span class="co">##  [61] "dm3_genes_introns"                    </span>
+<span class="co">##  [62] "dm6_genes_introns"                    </span>
+<span class="co">##  [63] "galGal5_genes_introns"                </span>
+<span class="co">##  [64] "hg19_genes_introns"                   </span>
+<span class="co">##  [65] "hg38_genes_introns"                   </span>
+<span class="co">##  [66] "mm9_genes_introns"                    </span>
+<span class="co">##  [67] "mm10_genes_introns"                   </span>
+<span class="co">##  [68] "rn4_genes_introns"                    </span>
+<span class="co">##  [69] "rn5_genes_introns"                    </span>
+<span class="co">##  [70] "rn6_genes_introns"                    </span>
+<span class="co">##  [71] "dm3_genes_intronexonboundaries"       </span>
+<span class="co">##  [72] "dm6_genes_intronexonboundaries"       </span>
+<span class="co">##  [73] "galGal5_genes_intronexonboundaries"   </span>
+<span class="co">##  [74] "hg19_genes_intronexonboundaries"      </span>
+<span class="co">##  [75] "hg38_genes_intronexonboundaries"      </span>
+<span class="co">##  [76] "mm9_genes_intronexonboundaries"       </span>
+<span class="co">##  [77] "mm10_genes_intronexonboundaries"      </span>
+<span class="co">##  [78] "rn4_genes_intronexonboundaries"       </span>
+<span class="co">##  [79] "rn5_genes_intronexonboundaries"       </span>
+<span class="co">##  [80] "rn6_genes_intronexonboundaries"       </span>
+<span class="co">##  [81] "dm3_genes_exonintronboundaries"       </span>
+<span class="co">##  [82] "dm6_genes_exonintronboundaries"       </span>
+<span class="co">##  [83] "galGal5_genes_exonintronboundaries"   </span>
+<span class="co">##  [84] "hg19_genes_exonintronboundaries"      </span>
+<span class="co">##  [85] "hg38_genes_exonintronboundaries"      </span>
+<span class="co">##  [86] "mm9_genes_exonintronboundaries"       </span>
+<span class="co">##  [87] "mm10_genes_exonintronboundaries"      </span>
+<span class="co">##  [88] "rn4_genes_exonintronboundaries"       </span>
+<span class="co">##  [89] "rn5_genes_exonintronboundaries"       </span>
+<span class="co">##  [90] "rn6_genes_exonintronboundaries"       </span>
+<span class="co">##  [91] "dm3_genes_3UTRs"                      </span>
+<span class="co">##  [92] "dm6_genes_3UTRs"                      </span>
+<span class="co">##  [93] "galGal5_genes_3UTRs"                  </span>
+<span class="co">##  [94] "hg19_genes_3UTRs"                     </span>
+<span class="co">##  [95] "hg38_genes_3UTRs"                     </span>
+<span class="co">##  [96] "mm9_genes_3UTRs"                      </span>
+<span class="co">##  [97] "mm10_genes_3UTRs"                     </span>
+<span class="co">##  [98] "rn4_genes_3UTRs"                      </span>
+<span class="co">##  [99] "rn5_genes_3UTRs"                      </span>
+<span class="co">## [100] "rn6_genes_3UTRs"                      </span>
+<span class="co">## [101] "dm3_genes_intergenic"                 </span>
+<span class="co">## [102] "dm6_genes_intergenic"                 </span>
+<span class="co">## [103] "galGal5_genes_intergenic"             </span>
+<span class="co">## [104] "hg19_genes_intergenic"                </span>
+<span class="co">## [105] "hg38_genes_intergenic"                </span>
+<span class="co">## [106] "mm9_genes_intergenic"                 </span>
+<span class="co">## [107] "mm10_genes_intergenic"                </span>
+<span class="co">## [108] "rn4_genes_intergenic"                 </span>
+<span class="co">## [109] "rn5_genes_intergenic"                 </span>
+<span class="co">## [110] "rn6_genes_intergenic"                 </span>
+<span class="co">## [111] "galGal5_cpg_islands"                  </span>
+<span class="co">## [112] "hg19_cpg_islands"                     </span>
+<span class="co">## [113] "hg38_cpg_islands"                     </span>
+<span class="co">## [114] "mm9_cpg_islands"                      </span>
+<span class="co">## [115] "mm10_cpg_islands"                     </span>
+<span class="co">## [116] "rn4_cpg_islands"                      </span>
+<span class="co">## [117] "rn5_cpg_islands"                      </span>
+<span class="co">## [118] "rn6_cpg_islands"                      </span>
+<span class="co">## [119] "galGal5_cpg_shores"                   </span>
+<span class="co">## [120] "hg19_cpg_shores"                      </span>
+<span class="co">## [121] "hg38_cpg_shores"                      </span>
+<span class="co">## [122] "mm9_cpg_shores"                       </span>
+<span class="co">## [123] "mm10_cpg_shores"                      </span>
+<span class="co">## [124] "rn4_cpg_shores"                       </span>
+<span class="co">## [125] "rn5_cpg_shores"                       </span>
+<span class="co">## [126] "rn6_cpg_shores"                       </span>
+<span class="co">## [127] "galGal5_cpg_shelves"                  </span>
+<span class="co">## [128] "hg19_cpg_shelves"                     </span>
+<span class="co">## [129] "hg38_cpg_shelves"                     </span>
+<span class="co">## [130] "mm9_cpg_shelves"                      </span>
+<span class="co">## [131] "mm10_cpg_shelves"                     </span>
+<span class="co">## [132] "rn4_cpg_shelves"                      </span>
+<span class="co">## [133] "rn5_cpg_shelves"                      </span>
+<span class="co">## [134] "rn6_cpg_shelves"                      </span>
+<span class="co">## [135] "galGal5_cpg_inter"                    </span>
+<span class="co">## [136] "hg19_cpg_inter"                       </span>
+<span class="co">## [137] "hg38_cpg_inter"                       </span>
+<span class="co">## [138] "mm9_cpg_inter"                        </span>
+<span class="co">## [139] "mm10_cpg_inter"                       </span>
+<span class="co">## [140] "rn4_cpg_inter"                        </span>
+<span class="co">## [141] "rn5_cpg_inter"                        </span>
+<span class="co">## [142] "rn6_cpg_inter"                        </span>
+<span class="co">## [143] "hg19_chromatin_Gm12878-ActivePromoter"</span>
+<span class="co">## [144] "hg19_chromatin_H1hesc-ActivePromoter" </span>
+<span class="co">## [145] "hg19_chromatin_Hepg2-ActivePromoter"  </span>
+<span class="co">## [146] "hg19_chromatin_Hmec-ActivePromoter"   </span>
+<span class="co">## [147] "hg19_chromatin_Hsmm-ActivePromoter"   </span>
+<span class="co">## [148] "hg19_chromatin_Huvec-ActivePromoter"  </span>
+<span class="co">## [149] "hg19_chromatin_K562-ActivePromoter"   </span>
+<span class="co">## [150] "hg19_chromatin_Nhek-ActivePromoter"   </span>
+<span class="co">## [151] "hg19_chromatin_Nhlf-ActivePromoter"   </span>
+<span class="co">## [152] "hg19_chromatin_Gm12878-WeakPromoter"  </span>
+<span class="co">## [153] "hg19_chromatin_H1hesc-WeakPromoter"   </span>
+<span class="co">## [154] "hg19_chromatin_Hepg2-WeakPromoter"    </span>
+<span class="co">## [155] "hg19_chromatin_Hmec-WeakPromoter"     </span>
+<span class="co">## [156] "hg19_chromatin_Hsmm-WeakPromoter"     </span>
+<span class="co">## [157] "hg19_chromatin_Huvec-WeakPromoter"    </span>
+<span class="co">## [158] "hg19_chromatin_K562-WeakPromoter"     </span>
+<span class="co">## [159] "hg19_chromatin_Nhek-WeakPromoter"     </span>
+<span class="co">## [160] "hg19_chromatin_Nhlf-WeakPromoter"     </span>
+<span class="co">## [161] "hg19_chromatin_Gm12878-PoisedPromoter"</span>
+<span class="co">## [162] "hg19_chromatin_H1hesc-PoisedPromoter" </span>
+<span class="co">## [163] "hg19_chromatin_Hepg2-PoisedPromoter"  </span>
+<span class="co">## [164] "hg19_chromatin_Hmec-PoisedPromoter"   </span>
+<span class="co">## [165] "hg19_chromatin_Hsmm-PoisedPromoter"   </span>
+<span class="co">## [166] "hg19_chromatin_Huvec-PoisedPromoter"  </span>
+<span class="co">## [167] "hg19_chromatin_K562-PoisedPromoter"   </span>
+<span class="co">## [168] "hg19_chromatin_Nhek-PoisedPromoter"   </span>
+<span class="co">## [169] "hg19_chromatin_Nhlf-PoisedPromoter"   </span>
+<span class="co">## [170] "hg19_chromatin_Gm12878-StrongEnhancer"</span>
+<span class="co">## [171] "hg19_chromatin_H1hesc-StrongEnhancer" </span>
+<span class="co">## [172] "hg19_chromatin_Hepg2-StrongEnhancer"  </span>
+<span class="co">## [173] "hg19_chromatin_Hmec-StrongEnhancer"   </span>
+<span class="co">## [174] "hg19_chromatin_Hsmm-StrongEnhancer"   </span>
+<span class="co">## [175] "hg19_chromatin_Huvec-StrongEnhancer"  </span>
+<span class="co">## [176] "hg19_chromatin_K562-StrongEnhancer"   </span>
+<span class="co">## [177] "hg19_chromatin_Nhek-StrongEnhancer"   </span>
+<span class="co">## [178] "hg19_chromatin_Nhlf-StrongEnhancer"   </span>
+<span class="co">## [179] "hg19_chromatin_Gm12878-WeakEnhancer"  </span>
+<span class="co">## [180] "hg19_chromatin_H1hesc-WeakEnhancer"   </span>
+<span class="co">## [181] "hg19_chromatin_Hepg2-WeakEnhancer"    </span>
+<span class="co">## [182] "hg19_chromatin_Hmec-WeakEnhancer"     </span>
+<span class="co">## [183] "hg19_chromatin_Hsmm-WeakEnhancer"     </span>
+<span class="co">## [184] "hg19_chromatin_Huvec-WeakEnhancer"    </span>
+<span class="co">## [185] "hg19_chromatin_K562-WeakEnhancer"     </span>
+<span class="co">## [186] "hg19_chromatin_Nhek-WeakEnhancer"     </span>
+<span class="co">## [187] "hg19_chromatin_Nhlf-WeakEnhancer"     </span>
+<span class="co">## [188] "hg19_chromatin_Gm12878-Insulator"     </span>
+<span class="co">## [189] "hg19_chromatin_H1hesc-Insulator"      </span>
+<span class="co">## [190] "hg19_chromatin_Hepg2-Insulator"       </span>
+<span class="co">## [191] "hg19_chromatin_Hmec-Insulator"        </span>
+<span class="co">## [192] "hg19_chromatin_Hsmm-Insulator"        </span>
+<span class="co">## [193] "hg19_chromatin_Huvec-Insulator"       </span>
+<span class="co">## [194] "hg19_chromatin_K562-Insulator"        </span>
+<span class="co">## [195] "hg19_chromatin_Nhek-Insulator"        </span>
+<span class="co">## [196] "hg19_chromatin_Nhlf-Insulator"        </span>
+<span class="co">## [197] "hg19_chromatin_Gm12878-TxnTransition" </span>
+<span class="co">## [198] "hg19_chromatin_H1hesc-TxnTransition"  </span>
+<span class="co">## [199] "hg19_chromatin_Hepg2-TxnTransition"   </span>
+<span class="co">## [200] "hg19_chromatin_Hmec-TxnTransition"    </span>
+<span class="co">## [201] "hg19_chromatin_Hsmm-TxnTransition"    </span>
+<span class="co">## [202] "hg19_chromatin_Huvec-TxnTransition"   </span>
+<span class="co">## [203] "hg19_chromatin_K562-TxnTransition"    </span>
+<span class="co">## [204] "hg19_chromatin_Nhek-TxnTransition"    </span>
+<span class="co">## [205] "hg19_chromatin_Nhlf-TxnTransition"    </span>
+<span class="co">## [206] "hg19_chromatin_Gm12878-TxnElongation" </span>
+<span class="co">## [207] "hg19_chromatin_H1hesc-TxnElongation"  </span>
+<span class="co">## [208] "hg19_chromatin_Hepg2-TxnElongation"   </span>
+<span class="co">## [209] "hg19_chromatin_Hmec-TxnElongation"    </span>
+<span class="co">## [210] "hg19_chromatin_Hsmm-TxnElongation"    </span>
+<span class="co">## [211] "hg19_chromatin_Huvec-TxnElongation"   </span>
+<span class="co">## [212] "hg19_chromatin_K562-TxnElongation"    </span>
+<span class="co">## [213] "hg19_chromatin_Nhek-TxnElongation"    </span>
+<span class="co">## [214] "hg19_chromatin_Nhlf-TxnElongation"    </span>
+<span class="co">## [215] "hg19_chromatin_Gm12878-WeakTxn"       </span>
+<span class="co">## [216] "hg19_chromatin_H1hesc-WeakTxn"        </span>
+<span class="co">## [217] "hg19_chromatin_Hepg2-WeakTxn"         </span>
+<span class="co">## [218] "hg19_chromatin_Hmec-WeakTxn"          </span>
+<span class="co">## [219] "hg19_chromatin_Hsmm-WeakTxn"          </span>
+<span class="co">## [220] "hg19_chromatin_Huvec-WeakTxn"         </span>
+<span class="co">## [221] "hg19_chromatin_K562-WeakTxn"          </span>
+<span class="co">## [222] "hg19_chromatin_Nhek-WeakTxn"          </span>
+<span class="co">## [223] "hg19_chromatin_Nhlf-WeakTxn"          </span>
+<span class="co">## [224] "hg19_chromatin_Gm12878-Repressed"     </span>
+<span class="co">## [225] "hg19_chromatin_H1hesc-Repressed"      </span>
+<span class="co">## [226] "hg19_chromatin_Hepg2-Repressed"       </span>
+<span class="co">## [227] "hg19_chromatin_Hmec-Repressed"        </span>
+<span class="co">## [228] "hg19_chromatin_Hsmm-Repressed"        </span>
+<span class="co">## [229] "hg19_chromatin_Huvec-Repressed"       </span>
+<span class="co">## [230] "hg19_chromatin_K562-Repressed"        </span>
+<span class="co">## [231] "hg19_chromatin_Nhek-Repressed"        </span>
+<span class="co">## [232] "hg19_chromatin_Nhlf-Repressed"        </span>
+<span class="co">## [233] "hg19_chromatin_Gm12878-Heterochrom/lo"</span>
+<span class="co">## [234] "hg19_chromatin_H1hesc-Heterochrom/lo" </span>
+<span class="co">## [235] "hg19_chromatin_Hepg2-Heterochrom/lo"  </span>
+<span class="co">## [236] "hg19_chromatin_Hmec-Heterochrom/lo"   </span>
+<span class="co">## [237] "hg19_chromatin_Hsmm-Heterochrom/lo"   </span>
+<span class="co">## [238] "hg19_chromatin_Huvec-Heterochrom/lo"  </span>
+<span class="co">## [239] "hg19_chromatin_K562-Heterochrom/lo"   </span>
+<span class="co">## [240] "hg19_chromatin_Nhek-Heterochrom/lo"   </span>
+<span class="co">## [241] "hg19_chromatin_Nhlf-Heterochrom/lo"   </span>
+<span class="co">## [242] "hg19_chromatin_Gm12878-Repetitive/CNV"</span>
+<span class="co">## [243] "hg19_chromatin_H1hesc-Repetitive/CNV" </span>
+<span class="co">## [244] "hg19_chromatin_Hepg2-Repetitive/CNV"  </span>
+<span class="co">## [245] "hg19_chromatin_Hmec-Repetitive/CNV"   </span>
+<span class="co">## [246] "hg19_chromatin_Hsmm-Repetitive/CNV"   </span>
+<span class="co">## [247] "hg19_chromatin_Huvec-Repetitive/CNV"  </span>
+<span class="co">## [248] "hg19_chromatin_K562-Repetitive/CNV"   </span>
+<span class="co">## [249] "hg19_chromatin_Nhek-Repetitive/CNV"   </span>
+<span class="co">## [250] "hg19_chromatin_Nhlf-Repetitive/CNV"   </span>
+<span class="co">## [251] "hg19_enhancers_fantom"                </span>
+<span class="co">## [252] "hg38_enhancers_fantom"                </span>
+<span class="co">## [253] "mm9_enhancers_fantom"                 </span>
+<span class="co">## [254] "mm10_enhancers_fantom"                </span>
+<span class="co">## [255] "hg19_lncrna_gencode"                  </span>
+<span class="co">## [256] "hg38_lncrna_gencode"                  </span>
+<span class="co">## [257] "mm10_lncrna_gencode"                  </span>
+<span class="co">## [258] "dm3_basicgenes"                       </span>
+<span class="co">## [259] "dm6_basicgenes"                       </span>
+<span class="co">## [260] "galGal5_basicgenes"                   </span>
+<span class="co">## [261] "hg19_basicgenes"                      </span>
+<span class="co">## [262] "hg38_basicgenes"                      </span>
+<span class="co">## [263] "mm9_basicgenes"                       </span>
+<span class="co">## [264] "mm10_basicgenes"                      </span>
+<span class="co">## [265] "rn4_basicgenes"                       </span>
+<span class="co">## [266] "rn5_basicgenes"                       </span>
+<span class="co">## [267] "rn6_basicgenes"                       </span>
+<span class="co">## [268] "galGal5_cpgs"                         </span>
+<span class="co">## [269] "hg19_cpgs"                            </span>
+<span class="co">## [270] "hg38_cpgs"                            </span>
+<span class="co">## [271] "mm9_cpgs"                             </span>
+<span class="co">## [272] "mm10_cpgs"                            </span>
+<span class="co">## [273] "rn4_cpgs"                             </span>
+<span class="co">## [274] "rn5_cpgs"                             </span>
+<span class="co">## [275] "rn6_cpgs"                             </span>
+<span class="co">## [276] "hg19_Gm12878-chromatin"               </span>
+<span class="co">## [277] "hg19_H1hesc-chromatin"                </span>
+<span class="co">## [278] "hg19_Hepg2-chromatin"                 </span>
+<span class="co">## [279] "hg19_Hmec-chromatin"                  </span>
+<span class="co">## [280] "hg19_Hsmm-chromatin"                  </span>
+<span class="co">## [281] "hg19_Huvec-chromatin"                 </span>
+<span class="co">## [282] "hg19_K562-chromatin"                  </span>
+<span class="co">## [283] "hg19_Nhek-chromatin"                  </span>
+<span class="co">## [284] "hg19_Nhlf-chromatin"</span></code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Pathway enrichment analysis</li>
 </ol>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TxDb.Hsapiens.UCSC.hg19.knownGene</span><span class="op">)</span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">TxDb.Hsapiens.UCSC.hg19.knownGene</span><span class="op">)</span>
 <span class="va">txdb</span> <span class="op">&lt;-</span> <span class="va">TxDb.Hsapiens.UCSC.hg19.knownGene</span>
 
-<span class="kw">for</span> <span class="op">(</span><span class="va">dataset</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">seq2gene</span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span>, tssRegion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3000</span>, <span class="fl">3000</span><span class="op">)</span>, flankDistance <span class="op">=</span> <span class="fl">3000</span>, TxDb<span class="op">=</span><span class="va">txdb</span><span class="op">)</span>
-  <span class="va">kkm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enrichKEGG.html">enrichKEGG</a></span><span class="op">(</span>gene         <span class="op">=</span> <span class="va">genes</span>,
+<span class="kw">for</span> <span class="op">(</span><span class="va">dataset</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">seq2gene</span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="va">dataset</span><span class="op">]</span><span class="op">]</span>, tssRegion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3000</span>, <span class="fl">3000</span><span class="op">)</span>, flankDistance <span class="op">=</span> <span class="fl">3000</span>, TxDb<span class="op">=</span><span class="va">txdb</span><span class="op">)</span>
+  <span class="va">kkm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enrichKEGG.html" class="external-link">enrichKEGG</a></span><span class="op">(</span>gene         <span class="op">=</span> <span class="va">genes</span>,
                  organism     <span class="op">=</span> <span class="st">'human'</span>,
                  pvalueCutoff <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>
   
 
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/enrichplot/man/dotplot.html">dotplot</a></span><span class="op">(</span><span class="va">kkm</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/enrichplot/man/dotplot.html" class="external-link">dotplot</a></span><span class="op">(</span><span class="va">kkm</span><span class="op">)</span><span class="op">)</span>
   
-  <span class="va">engo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enrichGO.html">enrichGO</a></span><span class="op">(</span>gene          <span class="op">=</span> <span class="va">genes</span>,
+  <span class="va">engo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enrichGO.html" class="external-link">enrichGO</a></span><span class="op">(</span>gene          <span class="op">=</span> <span class="va">genes</span>,
                 OrgDb         <span class="op">=</span> <span class="va">org.Hs.eg.db</span>,
                 ont           <span class="op">=</span> <span class="st">"BP"</span>,
                 pAdjustMethod <span class="op">=</span> <span class="st">"BH"</span>,
                 pvalueCutoff  <span class="op">=</span> <span class="fl">0.01</span>,
                 qvalueCutoff  <span class="op">=</span> <span class="fl">0.05</span>,
         readable      <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/enrichplot/man/dotplot.html">dotplot</a></span><span class="op">(</span><span class="va">engo</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/enrichplot/man/dotplot.html" class="external-link">dotplot</a></span><span class="op">(</span><span class="va">engo</span><span class="op">)</span><span class="op">)</span>
   
   <span class="op">}</span></code></pre></div>
-<pre><code>##   403 genes were dropped because they have exons located on both strands
-##   of the same reference sequence or on more than one reference sequence,
-##   so cannot be represented by a single genomic range.
-##   Use 'single.strand.genes.only=FALSE' to get all the genes in a
-##   GRangesList object, or use suppressMessages() to suppress this message.</code></pre>
-<pre><code>## Reading KEGG annotation online:
-## 
-## Reading KEGG annotation online:</code></pre>
+<pre><code><span class="co">## Reading KEGG annotation online:</span>
+<span class="co">## </span>
+<span class="co">## Reading KEGG annotation online:</span></code></pre>
 <p><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-5-1.png" width="700"><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-5-2.png" width="700"><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-5-3.png" width="700"><img src="methylation_analysisRmd_files/figure-html/unnamed-chunk-5-4.png" width="700"></p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by Reka Toth, Rajbir Nath Batra.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Reka Toth, Rajbir Nath Batra.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>

@@ -1,69 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/index.html</loc>
+    <loc>https://tkik.github.io/BasicR/404.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/reference/airway_small.html</loc>
+    <loc>https://tkik.github.io/BasicR/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/R_data_types.html</loc>
+    <loc>https://tkik.github.io/BasicR/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/S4_classes.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/R_data_types.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/S4_classes_exercises.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/S4_classes.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/assignment.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/S4_classes_exercises.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/basic_functions.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/assignment.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/control_structures.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/basic_functions.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/data_types_exercises.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/control_structures.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/data_types_exercises_solutions.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/data_cleaning.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/enrichment.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/data_cleaning_solutions.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/exercises_control_exercises.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/data_types_exercises.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/exercises_control_solutions.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/data_types_exercises_solutions.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/functions_exercises.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/enrichment.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/functions_exercises_solutions.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/exercises_control_exercises.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/intro.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/exercises_control_solutions.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/methylation_analysisRmd.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/functions_exercises.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/r_functions.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/functions_exercises_solutions.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/references.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/ggplot2.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/reproducible.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/ggplot_solutions.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/reproducible_solutions.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://CompEpigen.github.io/BasicR/articles/set_up_git.html</loc>
+    <loc>https://tkik.github.io/BasicR/articles/intro.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/articles/methylation_analysisRmd.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/articles/r_functions.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/articles/references.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/articles/reproducible.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/articles/reproducible_solutions.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/articles/resources.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/articles/set_up_git.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/index.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/reference/airway_small.html</loc>
+  </url>
+  <url>
+    <loc>https://tkik.github.io/BasicR/reference/index.html</loc>
   </url>
 </urlset>
