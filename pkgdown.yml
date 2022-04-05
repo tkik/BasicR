@@ -6,6 +6,7 @@ articles:
   S4_classes: S4_classes.html
   S4_classes_exercises: S4_classes_exercises.html
   Statistics: Statistics.html
+  Statstics_solutions: Statstics_solutions.html
   assignment: assignment.html
   basic_functions: basic_functions.html
   control_structures: control_structures.html
@@ -28,7 +29,7 @@ articles:
   reproducible_solutions: reproducible_solutions.html
   resources: resources.html
   set_up_git: set_up_git.html
-last_built: 2022-04-05T15:08Z
+last_built: 2022-04-05T22:56Z
 urls:
   reference: https://tkik.github.io/BasicR/reference
   article: https://tkik.github.io/BasicR/articles

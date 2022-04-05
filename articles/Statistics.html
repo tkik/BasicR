@@ -45,6 +45,7 @@
     <a class="dropdown-item" href="../articles/S4_classes.html">S4 classes</a>
     <a class="dropdown-item" href="../articles/S4_classes_exercises.html">S4 classes, exercises</a>
     <a class="dropdown-item" href="../articles/Statistics.html">Statistics</a>
+    <a class="dropdown-item" href="../articles/Statstics_solutions.html">Statistics_solutions</a>
     <a class="dropdown-item" href="../articles/assignment.html">Assignment</a>
     <a class="dropdown-item" href="../articles/basic_functions.html">Basic functions</a>
     <a class="dropdown-item" href="../articles/control_structures.html">Control structures</a>
@@ -105,7 +106,7 @@
 <h2 id="statistical-tests">STATISTICAL TESTS<a class="anchor" aria-label="anchor" href="#statistical-tests"></a>
 </h2>
 <p>Statistical tests are used to test assertions about populations. The aim is to determine whether there is enough evidence to <em>reject</em> a null hypothesis. This is shown by way of p-values.</p>
-<p><a href="https://shiny.rit.albany.edu/stat/sampdist/interactive%20explanation" class="external-link">How it works for continuous data?</a></p>
+<p><a href="https://shiny.rit.albany.edu/stat/sampdist/" class="external-link">How it works for continuous data?</a></p>
 <p><a href="https://rpsychologist.com/pvalue/" class="external-link">How to interpret p-value?</a></p>
 <p>For normal continuous data with one or two groups of interest, the t-test (paired or unpaired) is used to compare means. For non-normal data, non-parametric tests such as the Wilcoxon Test is used that compares ranks. For three or more groups, the ANOVA method (for normal data) compares the means with the help of variance calculations between groups and within groups. and Kruskal-Wallis test (for non-normal data) to compare ranks for non-normal data for calculations between groups and within groups.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -118,10 +119,8 @@
 <span class="co">#&gt; ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span>
 <span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span>
 <span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/" class="external-link">openintro</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: airports</span>
-<span class="co">#&gt; Loading required package: cherryblossom</span>
-<span class="co">#&gt; Loading required package: usdata</span></code></pre></div>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="http://openintrostat.github.io/openintro/" class="external-link">"openintro"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"openintro"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hip</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"../inst/extdata/hip_data.csv"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">hip</span><span class="op">)</span>
@@ -343,13 +342,8 @@
 
 <span class="va">p</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">sex</span>,y<span class="op">=</span><span class="va">Freq</span>,fill<span class="op">=</span><span class="va">satisfaction.cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></code></pre></div>
 <p><img src="Statistics_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
-<p>You can get relative risk between the sexes of being satisfied at a specific level from the following command.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">/</span><span class="va">p</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span>
-<span class="co">#&gt;      Low   Medium     High </span>
-<span class="co">#&gt; 1.067837 1.044483 0.965066</span></code></pre></div>
 <p>Test this relationship using the <code>chi.test</code> command on the contingency table.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">c</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">chisq.test</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>
 <span class="va">c</span>
 <span class="co">#&gt; </span>
@@ -373,74 +367,92 @@
 <div class="section level2">
 <h2 id="linear-associations">Linear associations<a class="anchor" aria-label="anchor" href="#linear-associations"></a>
 </h2>
+<p>The data we’re working with is in the openintro package and it’s called <code>hfi</code>, short for Human Freedom Index.</p>
+<p>What type of plot would you use to display the relationship between the personal freedom score, <code>pf_score</code>, and <code>pf_expression_control</code>? Plot this relationship using the variable <code>pf_expression_control</code> as the predictor. Does the relationship look linear? If you knew a country’s <code>pf_expression_control</code>, or its score out of 10, with 0 being the most, of political pressures and controls on media content, would you be comfortable using a linear model to predict the personal freedom score?</p>
+<p>If the relationship looks linear, we can quantify the strength of the relationship with the correlation coefficient.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">hfi_2016</span> <span class="op">&lt;-</span> <span class="va">hfi</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2016</span><span class="op">)</span>
+
+
+<span class="va">hfi_2016</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">pf_expression_control</span>, <span class="va">pf_score</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">hip</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">weight</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Removed 359 rows containing missing values (geom_point).</span></code></pre></div>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
+
+
+<span class="va">hfi_2016</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">pf_expression_control</span>, <span class="va">pf_score</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 1</span></span>
+<span class="co">#&gt;   `cor(pf_expression_control, pf_score)`</span>
+<span class="co">#&gt;                                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                                  0.845</span></code></pre></div>
+<p><span style="font-size:4em;">Correlation is not causation!!! </span></p>
+<p><img src="https://images.squarespace-cdn.com/content/v1/5bfc8dbab40b9d7dd9054f41/1635480696871-Y3HAE2GV9EUJB5P7UANT/FCUQhjvVUAUAPlh.jpg?format=750w?raw=true" width="70%"></p>
+</div>
+<div class="section level2">
+<h2 id="linear-regression">Linear regression<a class="anchor" aria-label="anchor" href="#linear-regression"></a>
+</h2>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-
-<span class="va">hip</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">weight</span>, <span class="va">age</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   cor(weight, age)</span>
-<span class="co">#&gt; 1       -0.2775743</span></code></pre></div>
-<p>Linear regression</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="va">hip</span><span class="op">)</span></code></pre></div>
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">pf_score</span> <span class="op">~</span> <span class="va">pf_expression_control</span>, data <span class="op">=</span> <span class="va">hfi_2016</span><span class="op">)</span></code></pre></div>
 <p>The first argument in the function <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> is a formula that takes the form <code>y ~ x</code>.</p>
 <p>The output of <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> is an object that contains all of the information we need about the linear model that was just fit. We can access this information using the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span>
-<span class="co">#&gt;   term        estimate std.error statistic  p.value</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)  106.       5.69       18.7  1.78<span style="color: #949494;">e</span><span style="color: #BB0000;">-54</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> age           -<span style="color: #BB0000;">0.410</span>    0.076<span style="text-decoration: underline;">2</span>     -<span style="color: #BB0000;">5.38</span> 1.36<span style="color: #949494;">e</span><span style="color: #BB0000;">- 7</span></span>
+<span class="co">#&gt;   term                  estimate std.error statistic  p.value</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)              4.28     0.149       28.8 4.23<span style="color: #949494;">e</span><span style="color: #BB0000;">-65</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> pf_expression_control    0.542    0.027<span style="text-decoration: underline;">1</span>      20.0 2.31<span style="color: #949494;">e</span><span style="color: #BB0000;">-45</span></span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
-<span class="co">#&gt; lm(formula = weight ~ age, data = hip)</span>
+<span class="co">#&gt; lm(formula = pf_score ~ pf_expression_control, data = hfi_2016)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -35.285 -11.775  -0.955   9.035 107.125 </span>
+<span class="co">#&gt;      Min       1Q   Median       3Q      Max </span>
+<span class="co">#&gt; -2.65911 -0.49491  0.04574  0.52073  1.59064 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept) 106.34195    5.68613  18.702  &lt; 2e-16 ***</span>
-<span class="co">#&gt; age          -0.40996    0.07617  -5.382 1.36e-07 ***</span>
+<span class="co">#&gt;                       Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)             4.2838     0.1490   28.75   &lt;2e-16 ***</span>
+<span class="co">#&gt; pf_expression_control   0.5419     0.0271   19.99   &lt;2e-16 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 16.2 on 347 degrees of freedom</span>
-<span class="co">#&gt;   (359 observations deleted due to missingness)</span>
-<span class="co">#&gt; Multiple R-squared:  0.07705,    Adjusted R-squared:  0.07439 </span>
-<span class="co">#&gt; F-statistic: 28.97 on 1 and 347 DF,  p-value: 1.358e-07</span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<span class="co">#&gt; Residual standard error: 0.7993 on 160 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.7141, Adjusted R-squared:  0.7123 </span>
+<span class="co">#&gt; F-statistic: 399.7 on 1 and 160 DF,  p-value: &lt; 2.2e-16</span></code></pre></div>
+<p>Let’s consider this output piece by piece. First, the formula used to describe the model is shown at the top, in what’s displayed as the “Call”. After the formula you find the five-number summary of the residuals. The “Coefficients” table shown next is key; its first column displays the linear model’s y-intercept and the coefficient of <code>pf_expression_control</code>. With this table, we can write down the least squares regression line for the linear model:</p>
+<p><span class="math display">\[
+  \hat{y} = 4.28 + 0.542 \times pf\_expression\_control
+\]</span></p>
+<p>This equation tells us two things:</p>
+<ul>
+<li>For countries with a <code>pf_expression_control</code> of 0 (those with the largest amount of political pressure on media content), we expect their mean personal freedom score to be 4.28.</li>
+<li>For every 1 unit increase in <code>pf_expression_control</code>, we expect a country’s mean personal freedom score to increase 0.542 units.</li>
+</ul>
+<p>We can assess model fit using <span class="math inline">\(R^2\)</span>, the proportion of variability in the response variable that is explained by the explanatory variable. We use the <code><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance()</a></code> function to access this information.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 12</span></span>
-<span class="co">#&gt;   r.squared adj.r.squared sigma statistic     p.value    df logLik   AIC   BIC</span>
-<span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    0.077<span style="text-decoration: underline;">0</span>        0.074<span style="text-decoration: underline;">4</span>  16.2      29.0 0.000<span style="text-decoration: underline;">000</span>136     1 -<span style="color: #BB0000; text-decoration: underline;">1</span><span style="color: #BB0000;">466.</span> <span style="text-decoration: underline;">2</span>938. <span style="text-decoration: underline;">2</span>950.</span>
+<span class="co">#&gt;   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC</span>
+<span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0.714         0.712 0.799      400. 2.31<span style="color: #949494;">e</span><span style="color: #BB0000;">-45</span>     1  -<span style="color: #BB0000;">193.</span>  391.  400.</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</span></span></code></pre></div>
-<p>For this model, 7.7% of the variability in <code>weight</code> is explained by <code>age</code>.</p>
-<p><span style="font-size:4em;">Correlation is not causation!!! </span></p>
-<p><img src="https://images.squarespace-cdn.com/content/v1/5bfc8dbab40b9d7dd9054f41/1635480696871-Y3HAE2GV9EUJB5P7UANT/FCUQhjvVUAUAPlh.jpg?format=750w?raw=true" width="70%"></p>
+<p>For this model, 71.4% of the variability in <code>pf_score</code> is explained by <code>pf_expression_control</code>.</p>
 <div class="section level3">
 <h3 id="prediction-and-prediction-errors">Prediction and prediction errors<a class="anchor" aria-label="anchor" href="#prediction-and-prediction-errors"></a>
 </h3>
 <p>Let’s create a scatterplot with the least squares line for <code>m1</code> laid on top.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hip</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">age</span>, y <span class="op">=</span> <span class="va">weight</span>, color<span class="op">=</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hfi_2016</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">pf_expression_control</span>, y <span class="op">=</span> <span class="va">pf_score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; `geom_smooth()` using formula 'y ~ x'</span>
-<span class="co">#&gt; Warning: Removed 359 rows containing non-finite values (stat_smooth).</span>
-<span class="co">#&gt; Warning: Removed 359 rows containing missing values (geom_point).</span></code></pre></div>
+<span class="co">#&gt; `geom_smooth()` using formula 'y ~ x'</span></code></pre></div>
 <p><img src="Statistics_files/figure-html/reg-with-line-1.png" width="700"></p>
 <p>Here, we are literally adding a layer on top of our plot. <code>geom_smooth</code> creates the line by fitting a linear model. It can also show us the standard error <code>se</code> associated with our line, but we’ll suppress that for now.</p>
 <p>This line can be used to predict <span class="math inline">\(y\)</span> at any value of <span class="math inline">\(x\)</span>. When predictions are made for values of <span class="math inline">\(x\)</span> that are beyond the range of the observed data, it is referred to as <em>extrapolation</em> and is not usually recommended. However, predictions made within the range of the data are more reliable. They’re also used to compute the residuals.</p>
@@ -450,11 +462,11 @@
 </h3>
 <p>To assess whether the linear model is reliable, we need to check for (1) linearity, (2) nearly normal residuals, and (3) constant variability.</p>
 <p>In order to do these checks we need access to the fitted (predicted) values and the residuals. We can use the <code><a href="https://generics.r-lib.org/reference/augment.html" class="external-link">augment()</a></code> function to calculate these.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">m1_aug</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/augment.html" class="external-link">augment</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span></code></pre></div>
 <p>###Linearity###</p>
 <p>You already checked if the relationship between <code>pf_score</code> and <code>pf_expression_control</code> is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">m1_aug</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.fitted</span>, y <span class="op">=</span> <span class="va">.resid</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
@@ -465,14 +477,16 @@
 <p>Is there any apparent pattern in the residuals plot? What does this indicate about the linearity of the relationship between the two variables?</p>
 <p>###Nearly normal residuals###</p>
 <p>To check this condition, we can look at a histogram of the residuals.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">m1_aug</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.resid</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Residuals"</span><span class="op">)</span></code></pre></div>
 <p><img src="Statistics_files/figure-html/hist-res-1.png" width="700"></p>
 <p>Based on the histogram, does the nearly normal residuals condition appear to be violated? Why or why not?</p>
-<p>###Constant variability###</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="constant-variability">Constant variability<a class="anchor" aria-label="anchor" href="#constant-variability"></a>
+</h4>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">m1_aug</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.fitted</span>, y <span class="op">=</span> <span class="va">.std.resid</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
@@ -480,6 +494,8 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"SD Residuals"</span><span class="op">)</span></code></pre></div>
 <p><img src="Statistics_files/figure-html/var-res-1.png" width="700"></p>
 <p>Based on the residuals vs. fitted plot, does the constant variability condition appear to be violated? Why or why not?</p>
+<hr>
+</div>
 </div>
 <div class="section level3">
 <h3 id="exercises">EXERCISES<a class="anchor" aria-label="anchor" href="#exercises"></a>
@@ -489,6 +505,23 @@
 <p>3. How does this relationship compare to the relationship between <code>pf_score</code> and <code>pf_expression_control</code>? Use the <span class="math inline">\(R^2\)</span> values from the two model summaries to compare. Does your <code>pf_expression_control</code> seem to predict <code>hf_score</code> better? Why or why not?</p>
 <p>4. Check the model diagnostics using appropriate visualisations and evaluate if the model conditions have been met.</p>
 <p>5. Pick another pair of variables of interest and visualise the relationship between them. Do you find the relationship surprising or is it what you expected. Discuss why you were interested in these variables and why you were/were not surprised by the relationship you observed.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="multivariable-regression">MULTIVARIABLE REGRESSION<a class="anchor" aria-label="anchor" href="#multivariable-regression"></a>
+</h2>
+<p><img src="https://www.researchgate.net/profile/Ian-Wilson-30/publication/299415540/figure/fig1/AS:349820582678528@1460415134350/Possible-relationships-of-a-covariate-and-a-confounder-to-an-exposure-variable-and-an_W640.jpg?raw=true" width="70%"></p>
+<p><a href="https://www.researchgate.net/publication/299415540_Confounding_and_causation_in_the_epidemiology_of_lead" class="external-link">Source</a></p>
+<div class="section level3">
+<h3 id="exercises-1">EXERCISES<a class="anchor" aria-label="anchor" href="#exercises-1"></a>
+</h3>
+<p>1. Copy your model from the previous exercise that uses <code>pf_expression_control</code> to predict Human Freedom or <code>hf_score</code>. Using the <code>tidy</code> command, what does the slope tell us in the context of the relationship between human freedom and expression control in the country?</p>
+<p>2. Add region to the model from Q1 using <code>lm(hf_score ~ pf_expression_control + region, data = hfi_2016)</code>. What do you notice about the slope between human freedom and expression control? How has it changed from the previous model. Do you think region is a confounder, and think about reasons why this might be so?</p>
+<p>3. Compare the <span class="math inline">\(R^2\)</span> for the 2 models from Q1 and Q2. Is there an increase by adding region? Think about the definition of <span class="math inline">\(R^2\)</span>. What does this mean in this context?</p>
+<p>4. Fit a new model that uses <code>ef_money</code> or monetary measure to predict <code>hf_score</code>. What does the slope tell us in the context of the relationship between human freedom and the economy in the country?</p>
+<p>5. Again add region to the model from Q4. Compare the slope and <span class="math inline">\(R^2\)</span> with the model from Q4.</p>
+<p>6. Finally fit a model with <code>ef_money</code> and <code>pf_expression_control</code> as exposures and <code>hf_score</code> as outcome. Compare the slope and <span class="math inline">\(R^2\)</span> from the models from Q1. Could <code>ef_money</code> be a confounder?</p>
+<p>7. Use a linear regression model (and scatter plot) with <code>ef_money</code> as exposure and <code>pf_expression_control</code> as outcome, to study whether <code>ef_money</code> has an association with <code>pf_expression_control</code> as well. This might validate our finding that <code>ef_money</code> is a confounder between <code>pf_expression_control</code> as exposure and <code>hf_score</code> as outcome from Q6.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
