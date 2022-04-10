@@ -43,8 +43,8 @@ Representation:
 
 ```{r}
 library(SummarizedExperiment)
-data("airway_small",  package="BasicR")
-
+#data("airway_small",  package="BasicR")
+load("../data/airway_small.rda")
 se <- airway_small
 
 ```

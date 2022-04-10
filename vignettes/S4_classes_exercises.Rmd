@@ -13,7 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(SummarizedExperiment)
-data("airway_small")
+load("../data/airway_small.rda")
+
+se <- airway_small
 
 #airway_small
 
