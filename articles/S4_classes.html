@@ -199,8 +199,8 @@
 <span class="co">## </span>
 <span class="co">##     anyMissing, rowMedians</span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"airway_small"</span>,  package<span class="op">=</span><span class="st">"BasicR"</span><span class="op">)</span>
-
+<code class="sourceCode R"><span class="co">#data("airway_small",  package="BasicR")</span>
+<span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">"../data/airway_small.rda"</span><span class="op">)</span>
 <span class="va">se</span> <span class="op">&lt;-</span> <span class="va">airway_small</span></code></pre></div>
 <div class="section level2">
 <h2 id="accessors">Accessors<a class="anchor" aria-label="anchor" href="#accessors"></a>
@@ -661,78 +661,145 @@
 <h2 id="deseq2">DeSeq2<a class="anchor" aria-label="anchor" href="#deseq2"></a>
 </h2>
 <div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"pasilla"</span><span class="op">)</span>
-<span class="va">pasCts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,
-                      <span class="st">"pasilla_gene_counts.tsv"</span>,
-                      package<span class="op">=</span><span class="st">"pasilla"</span>, mustWork<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">pasAnno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,
-                       <span class="st">"pasilla_sample_annotation.csv"</span>,
-                       package<span class="op">=</span><span class="st">"pasilla"</span>, mustWork<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">cts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">pasCts</span>,sep<span class="op">=</span><span class="st">"\t"</span>,row.names<span class="op">=</span><span class="st">"gene_id"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">coldata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">pasAnno</span>, row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">coldata</span> <span class="op">&lt;-</span> <span class="va">coldata</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"condition"</span>,<span class="st">"type"</span><span class="op">)</span><span class="op">]</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## Attaching package: 'dplyr'</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:Biobase':</span>
+<span class="co">## </span>
+<span class="co">##     combine</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:GenomicRanges':</span>
+<span class="co">## </span>
+<span class="co">##     intersect, setdiff, union</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:GenomeInfoDb':</span>
+<span class="co">## </span>
+<span class="co">##     intersect</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:IRanges':</span>
+<span class="co">## </span>
+<span class="co">##     collapse, desc, intersect, setdiff, slice, union</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:S4Vectors':</span>
+<span class="co">## </span>
+<span class="co">##     first, intersect, rename, setdiff, setequal, union</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:BiocGenerics':</span>
+<span class="co">## </span>
+<span class="co">##     combine, intersect, setdiff, union</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:matrixStats':</span>
+<span class="co">## </span>
+<span class="co">##     count</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:stats':</span>
+<span class="co">## </span>
+<span class="co">##     filter, lag</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:base':</span>
+<span class="co">## </span>
+<span class="co">##     intersect, setdiff, setequal, union</span></code></pre>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">count_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"../inst/extdata/GSE139563_Processed_data_Paracrine_Senescence.txt.gz"</span>, skip<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">count_mat</span> <span class="op">&lt;-</span> <span class="va">count_mat</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"count"</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+<span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"../inst/extdata//GSE139563_Processed_data_Paracrine_Senescence.txt.gz"</span>, header<span class="op">=</span><span class="cn">F</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">coldata</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">"fb"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">coldata</span><span class="op">)</span><span class="op">)</span>
-<span class="va">cts</span> <span class="op">&lt;-</span> <span class="va">cts</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">coldata</span><span class="op">)</span><span class="op">]</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">meta</span><span class="op">$</span><span class="va">V1</span><span class="op">[</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span>
+<span class="va">names</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"_"</span>, <span class="va">meta</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">[</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">names</span><span class="op">[</span><span class="va">names</span><span class="op">!=</span><span class="st">""</span><span class="op">]</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"O"</span>, <span class="st">"0"</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">coldata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span>, tp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"(D[[:digit:]]+)_(rep[12])"</span>, <span class="st">"\\1"</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span><span class="op">)</span>, 
+                      rep<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"(D[[:digit:]]+)_(rep[12])"</span>, <span class="st">"\\2"</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">count_mat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt; 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>tp_cat<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">tp</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D0"</span>, <span class="st">"D4"</span><span class="op">)</span>, <span class="st">"early"</span>, <span class="st">"late"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">anno_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
+  GeneID <span class="op">=</span> <span class="va">meta</span><span class="op">$</span><span class="va">V1</span><span class="op">[</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span>,
+  gene_name <span class="op">=</span> <span class="va">meta</span><span class="op">$</span><span class="va">V2</span><span class="op">[</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>,
+  row.names <span class="op">=</span> <span class="va">meta</span><span class="op">$</span><span class="va">V1</span><span class="op">[</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span>
+<span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/mikelove/DESeq2" class="external-link">"DESeq2"</a></span><span class="op">)</span>
-<span class="va">dds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeqDataSet.html" class="external-link">DESeqDataSetFromMatrix</a></span><span class="op">(</span>countData <span class="op">=</span> <span class="va">cts</span>,
+<span class="va">dds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeqDataSet.html" class="external-link">DESeqDataSetFromMatrix</a></span><span class="op">(</span>countData <span class="op">=</span> <span class="va">count_mat</span>,
                               colData <span class="op">=</span> <span class="va">coldata</span>,
-                              design <span class="op">=</span> <span class="op">~</span> <span class="va">condition</span><span class="op">)</span></code></pre></div>
+                              design <span class="op">=</span> <span class="op">~</span> <span class="va">tp_cat</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Warning in DESeqDataSet(se, design = design, ignoreRank): some variables in</span>
 <span class="co">## design formula are characters, converting to factors</span></code></pre>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dds</span></code></pre></div>
 <pre><code><span class="co">## class: DESeqDataSet </span>
-<span class="co">## dim: 14599 7 </span>
+<span class="co">## dim: 27696 8 </span>
 <span class="co">## metadata(1): version</span>
 <span class="co">## assays(1): counts</span>
-<span class="co">## rownames(14599): FBgn0000003 FBgn0000008 ... FBgn0261574 FBgn0261575</span>
+<span class="co">## rownames(27696): ENSG00000238009.6 ENSG00000268903.1 ...</span>
+<span class="co">##   ENSG00000210195.2 ENSG00000210196.2</span>
 <span class="co">## rowData names(0):</span>
-<span class="co">## colnames(7): treated1 treated2 ... untreated3 untreated4</span>
-<span class="co">## colData names(2): condition type</span></code></pre>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dds</span> <span class="op">&lt;-</span> <span class="va">dds</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">200</span>,<span class="op">]</span>
-<span class="va">dds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq</a></span><span class="op">(</span><span class="va">dds</span><span class="op">)</span></code></pre></div>
+<span class="co">## colnames(8): D0_rep1 D0_rep2 ... D10_rep1 D10_rep2</span>
+<span class="co">## colData names(3): tp rep tp_cat</span></code></pre>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq</a></span><span class="op">(</span><span class="va">dds</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## estimating size factors</span></code></pre>
 <pre><code><span class="co">## estimating dispersions</span></code></pre>
 <pre><code><span class="co">## gene-wise dispersion estimates</span></code></pre>
 <pre><code><span class="co">## mean-dispersion relationship</span></code></pre>
 <pre><code><span class="co">## final dispersion estimates</span></code></pre>
 <pre><code><span class="co">## fitting model and testing</span></code></pre>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">dds</span><span class="op">)</span>
-<span class="va">res</span></code></pre></div>
-<pre><code><span class="co">## log2 fold change (MLE): condition untreated vs treated </span>
-<span class="co">## Wald test p-value: condition untreated vs treated </span>
-<span class="co">## DataFrame with 200 rows and 6 columns</span>
-<span class="co">##                baseMean log2FoldChange     lfcSE       stat      pvalue</span>
-<span class="co">##               &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;   &lt;numeric&gt;</span>
-<span class="co">## FBgn0000003    0.172207     -0.9986796  3.806863 -0.2623366   0.7930619</span>
-<span class="co">## FBgn0000008   95.873798      0.0140036  0.219868  0.0636906   0.9492166</span>
-<span class="co">## FBgn0000014    1.090634      0.5233543  2.215680  0.2362048   0.8132737</span>
-<span class="co">## FBgn0000015    0.853818      1.8909340  2.149959  0.8795209   0.3791189</span>
-<span class="co">## FBgn0000017 4392.045082      0.2549107  0.116978  2.1791389   0.0293213</span>
-<span class="co">## ...                 ...            ...       ...        ...         ...</span>
-<span class="co">## FBgn0000567   263.99287       1.239187  0.166174   7.457181 8.83932e-14</span>
-<span class="co">## FBgn0000568  3655.58621       0.220186  0.210651   1.045263 2.95901e-01</span>
-<span class="co">## FBgn0000575  1435.99029      -0.300818  0.175862  -1.710531 8.71677e-02</span>
-<span class="co">## FBgn0000576     0.00000             NA        NA         NA          NA</span>
-<span class="co">## FBgn0000577     0.35367       1.822069  3.491008   0.521932 6.01718e-01</span>
-<span class="co">##                    padj</span>
-<span class="co">##               &lt;numeric&gt;</span>
-<span class="co">## FBgn0000003    0.994466</span>
-<span class="co">## FBgn0000008    0.996580</span>
-<span class="co">## FBgn0000014    0.994466</span>
-<span class="co">## FBgn0000015    0.817888</span>
-<span class="co">## FBgn0000017    0.189072</span>
-<span class="co">## ...                 ...</span>
-<span class="co">## FBgn0000567 8.26476e-12</span>
-<span class="co">## FBgn0000568 7.88180e-01</span>
-<span class="co">## FBgn0000575 3.97570e-01</span>
-<span class="co">## FBgn0000576          NA</span>
-<span class="co">## FBgn0000577 9.94466e-01</span></code></pre>
-<p>```</p>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">dds</span><span class="op">)</span> 
+<span class="co">#res &lt;- res[which(res$padj&lt;0.05),]</span>
+
+<span class="va">ge_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/varianceStabilizingTransformation.html" class="external-link">getVarianceStabilizedData</a></span><span class="op">(</span><span class="va">dds</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hasaru-k/GlimmaV2" class="external-link">Glimma</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/Glimma/man/glMDSPlot.html" class="external-link">glMDSPlot</a></span><span class="op">(</span><span class="va">ge_mat</span>,  groups<span class="op">=</span><span class="va">coldata</span><span class="op">$</span><span class="va">tp</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">coldata</span><span class="op">)</span>, launch<span class="op">=</span><span class="cn">T</span>, folder <span class="op">=</span> <span class="st">"/glimma-plots"</span>, html <span class="op">=</span> <span class="st">"MDS-Plot_full"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R">    <span class="fu"><a href="https://rdrr.io/pkg/Glimma/man/glMDPlot.html" class="external-link">glMDPlot</a></span><span class="op">(</span><span class="va">res</span>, counts<span class="op">=</span><span class="va">ge_mat</span>, groups <span class="op">=</span> <span class="va">dds</span><span class="op">@</span><span class="va">colData</span><span class="op">[</span>,<span class="st">"tp"</span><span class="op">]</span>, anno<span class="op">=</span><span class="va">anno_df</span>, main <span class="op">=</span> <span class="st">"Results"</span>, status <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">padj</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">)</span>, launch <span class="op">=</span> <span class="cn">T</span>, folder <span class="op">=</span> <span class="st">"/glimma-plots"</span> , transform <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">pheatmap</span><span class="op">)</span>
+
+
+<span class="fu"><a href="https://rdrr.io/pkg/pheatmap/man/pheatmap.html" class="external-link">pheatmap</a></span><span class="op">(</span><span class="va">ge_mat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">padj</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">)</span><span class="op">]</span>,<span class="op">]</span><span class="op">)</span></code></pre></div>
+<p><img src="S4_classes_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pheatmap/man/pheatmap.html" class="external-link">pheatmap</a></span><span class="op">(</span><span class="va">ge_mat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">padj</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">)</span><span class="op">]</span>,<span class="op">]</span>, scale <span class="op">=</span> <span class="st">"row"</span>, show_rownames <span class="op">=</span> <span class="cn">F</span>, annotation_col <span class="op">=</span> <span class="va">coldata</span><span class="op">)</span></code></pre></div>
+<p><img src="S4_classes_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yulab-smu.top/biomedical-knowledge-mining-book/" class="external-link">clusterProfiler</a></span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span></code></pre>
+<pre><code><span class="co">## Registered S3 method overwritten by 'ggtree':</span>
+<span class="co">##   method      from </span>
+<span class="co">##   identify.gg ggfun</span></code></pre>
+<pre><code><span class="co">## clusterProfiler v4.2.2  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/</span>
+<span class="co">## </span>
+<span class="co">## If you use clusterProfiler in published research, please cite:</span>
+<span class="co">## T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141</span></code></pre>
+<pre><code><span class="co">## </span>
+<span class="co">## Attaching package: 'clusterProfiler'</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:IRanges':</span>
+<span class="co">## </span>
+<span class="co">##     slice</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:S4Vectors':</span>
+<span class="co">## </span>
+<span class="co">##     rename</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:stats':</span>
+<span class="co">## </span>
+<span class="co">##     filter</span></code></pre>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">org.Hs.eg.db</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Loading required package: AnnotationDbi</span></code></pre>
+<pre><code><span class="co">## </span>
+<span class="co">## Attaching package: 'AnnotationDbi'</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:clusterProfiler':</span>
+<span class="co">## </span>
+<span class="co">##     select</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:dplyr':</span>
+<span class="co">## </span>
+<span class="co">##     select</span></code></pre>
+<pre><code><span class="co">## </span></code></pre>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ego</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enrichGO.html" class="external-link">enrichGO</a></span><span class="op">(</span>gene          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"(ENSG[[:digit:]]*)(\\.[[:digit:]]+)"</span>, <span class="st">"\\1"</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">padj</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">)</span><span class="op">]</span>,
+                universe      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"(ENSG[[:digit:]]*)(\\.[[:digit:]]+)"</span>, <span class="st">"\\1"</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>,
+                OrgDb         <span class="op">=</span> <span class="va">org.Hs.eg.db</span>,
+                keyType <span class="op">=</span> <span class="st">"ENSEMBL"</span>,
+                ont           <span class="op">=</span> <span class="st">"MF"</span>,
+                pAdjustMethod <span class="op">=</span> <span class="st">"BH"</span>,
+                pvalueCutoff  <span class="op">=</span> <span class="fl">0.01</span>,
+                qvalueCutoff  <span class="op">=</span> <span class="fl">0.05</span>,
+        readable      <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

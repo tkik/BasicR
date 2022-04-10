@@ -164,19 +164,29 @@
 <span class="co">## </span>
 <span class="co">##     anyMissing, rowMedians</span></code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"airway_small"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning in data("airway_small"): data set 'airway_small' not found</span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#airway_small</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">"../data/airway_small.rda"</span><span class="op">)</span>
+
+<span class="va">se</span> <span class="op">&lt;-</span> <span class="va">airway_small</span>
+
+<span class="co">#airway_small</span></code></pre></div>
 <ol style="list-style-type: decimal">
-<li><p>Extract genes with exons overlapping the region 16:80000103-81066719</p></li>
-<li><p>Calculate the mean counts for these rows</p></li>
-<li><p>Exclude the last sample</p></li>
-<li><p>Use the dds object from previously</p></li>
-<li><p>Find the rows, where the gene expression is 0 for all the samples</p></li>
-<li><p>Exclude these rows.</p></li>
-<li><p>Run the analysis again on this subset</p></li>
-<li><p>Using the DeSeq2 vignette, find out how to do a PCA on the gene expression data. Tip: you will have to apply a variance stabilizing transformation on the count data.</p></li>
+<li>Extract genes with exons overlapping the region 16:80000103-81066719</li>
+<li>Calculate the mean counts for these rows</li>
+<li>Exclude the last sample</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html" class="external-link">GRanges</a></span><span class="op">(</span><span class="st">"16:80000103-81066719"</span><span class="op">)</span>
+
+<span class="va">selected_ranges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/findOverlaps-methods.html" class="external-link">subsetByOverlaps</a></span><span class="op">(</span><span class="va">se</span>, <span class="va">gr1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">selected_ranges</span><span class="op">)</span><span class="op">$</span><span class="va">counts</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## ENSG00000166446 ENSG00000166451 </span>
+<span class="co">##          120.75           64.00</span></code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Use the dds object from previously</li>
+<li>Find the rows, where the gene expression is 0 for all the samples</li>
+<li>Exclude these rows.</li>
+<li>Run the analysis again on this subset</li>
+<li>Using the DeSeq2 vignette, find out how to do a PCA on the gene expression data. Tip: you will have to apply a variance stabilizing transformation on the count data.</li>
 </ol></main>
 </div>
 
