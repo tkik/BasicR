@@ -26,6 +26,10 @@ data("airway_small")
 
 ```{r}
 
+gr1 <- GRanges("16:80000103-81066719")
+
+selected_ranges <- subsetByOverlaps(se, gr1)
+rowMeans(assays(selected_ranges)$counts)
 
 ```
 

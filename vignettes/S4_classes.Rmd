@@ -227,32 +227,90 @@ c(gr1, gr3)
 
 
 ```{r}
-library("pasilla")
-pasCts <- system.file("extdata",
-                      "pasilla_gene_counts.tsv",
-                      package="pasilla", mustWork=TRUE)
-pasAnno <- system.file("extdata",
-                       "pasilla_sample_annotation.csv",
-                       package="pasilla", mustWork=TRUE)
-cts <- as.matrix(read.csv(pasCts,sep="\t",row.names="gene_id"))
-coldata <- read.csv(pasAnno, row.names=1)
-coldata <- coldata[,c("condition","type")]
+library("dplyr")
 
-rownames(coldata) <- sub("fb", "", rownames(coldata))
-cts <- cts[, rownames(coldata)]
+count_mat <- read.delim("../inst/extdata/GSE139563_Processed_data_Paracrine_Senescence.txt.gz", skip=1)
+count_mat <- count_mat[,grep("count", colnames(count_mat))]
+meta <- read.delim("../inst/extdata//GSE139563_Processed_data_Paracrine_Senescence.txt.gz", header=F)
+
+rownames(count_mat) <- meta$V1[-(1:2)]
+names <-  gsub(" ", "_", meta[1,][-(1:2)])
+colnames(count_mat) <- names[names!=""]
+
+colnames(count_mat) <- gsub("O", "0", colnames(count_mat))
+
+coldata <- data.frame(row.names = colnames(count_mat), tp = gsub("(D[[:digit:]]+)_(rep[12])", "\\1", colnames(count_mat)), 
+                      rep=gsub("(D[[:digit:]]+)_(rep[12])", "\\2", colnames(count_mat))) |> 
+            mutate(tp_cat=ifelse(tp %in% c("D0", "D4"), "early", "late"))
+
+anno_df <- data.frame(
+  GeneID = meta$V1[-(1:2)],
+  gene_name = meta$V2[-(1:2)],
+  stringsAsFactors = FALSE,
+  row.names = meta$V1[-(1:2)]
+)
 
 library("DESeq2")
-dds <- DESeqDataSetFromMatrix(countData = cts,
+dds <- DESeqDataSetFromMatrix(countData = count_mat,
                               colData = coldata,
-                              design = ~ condition)
+                              design = ~ tp_cat)
 dds
-dds <- dds[1:200,]
+
 dds <- DESeq(dds)
-res <- results(dds)
-res
+res <- results(dds) 
+#res <- res[which(res$padj<0.05),]
+
+ge_mat <- getVarianceStabilizedData(dds)
+
+
 
 
 ```
+
+```{r}
+library(Glimma)
+glMDSPlot(ge_mat,  groups=coldata$tp, labels=rownames(coldata), launch=T, folder = "/glimma-plots", html = "MDS-Plot_full")
+
+```
+
+
+
+```{r}
+    glMDPlot(res, counts=ge_mat, groups = dds@colData[,"tp"], anno=anno_df, main = "Results", status = as.numeric(res$padj<0.05), launch = T, folder = "/glimma-plots" , transform = F)
+
+```
+
+
+
+```{r}
+library(pheatmap)
+
+
+pheatmap(ge_mat[rownames(res)[which(res$padj<0.05)],])
+
+```
+
+```{r}
+
+pheatmap(ge_mat[rownames(res)[which(res$padj<0.05)],], scale = "row", show_rownames = F, annotation_col = coldata)
+
+```
+
+```{r}
+library(clusterProfiler)
+library(org.Hs.eg.db)
+
+
+
+ego <- enrichGO(gene          = gsub("(ENSG[[:digit:]]*)(\\.[[:digit:]]+)", "\\1", rownames(res))[which(res$padj<0.05)],
+                universe      = gsub("(ENSG[[:digit:]]*)(\\.[[:digit:]]+)", "\\1", rownames(res)),
+                OrgDb         = org.Hs.eg.db,
+                keyType = "ENSEMBL",
+                ont           = "MF",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.01,
+                qvalueCutoff  = 0.05,
+        readable      = TRUE)
 
 ```
 

@@ -75,15 +75,22 @@ hfi_2016 <- hfi %>%
   filter(year == 2016)
 
 m1 <- lm(hf_score ~ pf_expression_control, data = hfi_2016)
+m2 <- lm(pf_score ~ pf_expression_control, data = hfi_2016)
 
 summary(m1)
-plot(m1)
+#
 
 
 ggplot(data = hfi_2016, aes(x = pf_expression_control, y = hf_score)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 
+
+ggplot(data = hfi_2016, aes(x = pf_expression_control, y = pf_score)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+
+plot(m1)
 
 ```
 
@@ -117,7 +124,9 @@ summary(m2)
 m3 <- lm(ef_money ~ pf_expression_control, data = hfi_2016)
 m4 <- lm(ef_money ~ pf_expression_control + region, data = hfi_2016)
 
-m4 <- lm(hf_score ~ pf_expression_control + ef_money, data = hfi_2016)
+m1 <- lm(hf_score ~ pf_expression_control + ef_money, data = hfi_2016)
+
+m4 <- lm(hf_score ~  ef_money, data = hfi_2016)
 
 
 ggplot(data = hfi_2016, aes(x = ef_money, y = pf_expression_control)) +
