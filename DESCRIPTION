@@ -57,7 +57,8 @@ Suggests:
     janitor,
     readr, 
     gapminder, 
-    plotly
+    plotly,
+    pheatmap
 VignetteBuilder: knitr
 URL: https://github.com/tkik/BasicR,
     https://tkik.github.io/BasicR/,
