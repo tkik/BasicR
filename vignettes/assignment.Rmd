@@ -11,18 +11,15 @@ vignette: >
 ## The tasks based on exercises from Reka:
 
 1. Create a workflowr project
-2. Set it up so it works with github. 
-3. Create a Markdown file in the analyis folder and solve the statistics exercises. 
-4. Add the following code to the end of the Rmd file and set `eval=TRUE` (see the code in the assignment.Rmd file):
+2. Create a Markdown file in the analyis folder and solve the statistics exercises. 
+3. Add the following code to the end of the Rmd file and set `eval=TRUE` (see the code in the assignment.Rmd file):
 
 ```{r, echo = FALSE, out.width = "70%", eval=FALSE}
 knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero.jpg?raw=true", dpi = 100)
 ```
 
-
-4. Publish and push the file to github. 
-5. Set up the github pages with the repository. 
-6. As the result of the assignment, send us the link of your webpage. 
+4. Build your webpage with links on the index.html
+5. As the result of the assignment, send me a zip folder 
 
 
 ## Statistics exercises: 

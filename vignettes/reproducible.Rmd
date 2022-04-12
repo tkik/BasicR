@@ -108,7 +108,7 @@ print(xtable::xtable(mtcars), type = 'html')
 - modify days since birth that it appears in years. google the exact number of days in a year. 
 - Create tables for Diagnosis.Age, Sex, Race.Category and American.Joint.Committee.on.Cancer.Tumor.Stage.Code
 - do chi-sq test for American.Joint.Committee.on.Cancer.Tumor.Stage.Code and Sex Plot the data (e.g. barplot, counts by gender)
-- do linear regression for the Mutation.Count and stage, gender and age. show the results in table. Plot the data.
+- do linear regression for the Mutation.Count and Aneuploidy.Score, gender and age. show the results in table. Plot the data.
 
 
 
