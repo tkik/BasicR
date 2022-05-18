@@ -22,7 +22,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BasicR</a>
 
@@ -522,14 +522,18 @@
 <pre><code><span class="co">## [1]  TRUE  TRUE FALSE</span></code></pre>
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&amp;&amp;</span> <span class="va">b</span></code></pre></div>
+<pre><code><span class="co">## Warning in a &amp;&amp; b: 'length(x) = 3 &gt; 1' in coercion to 'logical(1)'</span>
+
+<span class="co">## Warning in a &amp;&amp; b: 'length(x) = 3 &gt; 1' in coercion to 'logical(1)'</span></code></pre>
 <pre><code><span class="co">## [1] TRUE</span></code></pre>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">|</span> <span class="va">b</span></code></pre></div>
 <pre><code><span class="co">## [1] TRUE TRUE TRUE</span></code></pre>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">||</span> <span class="va">b</span></code></pre></div>
+<pre><code><span class="co">## Warning in a || b: 'length(x) = 3 &gt; 1' in coercion to 'logical(1)'</span></code></pre>
 <pre><code><span class="co">## [1] TRUE</span></code></pre>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># subsetting vectors </span>
 <span class="co"># Indexing is 1-based</span>
 
@@ -538,25 +542,25 @@
 
 <span class="va">a</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] 1</span></code></pre>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">b</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] 1 2</span></code></pre>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">b</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] 1 2</span></code></pre>
-<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">[</span><span class="va">a</span><span class="op">&gt;</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] 3</span></code></pre>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">b</span><span class="op">[</span><span class="va">b</span><span class="op">&gt;</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1]  4 NA</span></code></pre>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">b</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] 1 2 4</span></code></pre>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 1 2 3</span></code></pre>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#named vectors</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span><span class="op">)</span>
@@ -564,31 +568,31 @@
 <span class="va">a</span></code></pre></div>
 <pre><code><span class="co">##   one   two three </span>
 <span class="co">##     1     2     3</span></code></pre>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">[</span><span class="st">"one"</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## one </span>
 <span class="co">##   1</span></code></pre>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">a</span>, collapse <span class="op">=</span> <span class="st">","</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "1,2,3"</span></code></pre>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#other useful functions</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 6</span></code></pre>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 2</span></code></pre>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 2</span></code></pre>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 1</span></code></pre>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] NA</span></code></pre>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">b</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 2.333333</span></code></pre>
 </div>
@@ -596,76 +600,76 @@
 <h3 id="factors">Factors<a class="anchor" aria-label="anchor" href="#factors"></a>
 </h3>
 <p>Factors in R are quite unique type. It is very useful in some cases, but in my experience, it can be source of errors if not handled properly. It is used for categorical variables. It is internally represented as integers, but has labels. The set of labels are fixed.</p>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"a"</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">a</span></code></pre></div>
 <pre><code><span class="co">## [1] a b c a</span>
 <span class="co">## Levels: a b c d</span></code></pre>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "factor"</span></code></pre>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "integer"</span></code></pre>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"d"</span>
 <span class="co">#but!</span>
 <span class="va">a</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"e"</span></code></pre></div>
 <pre><code><span class="co">## Warning in `[&lt;-.factor`(`*tmp*`, 2, value = "e"): invalid factor level, NA</span>
 <span class="co">## generated</span></code></pre>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"4"</span>, <span class="st">"3"</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"4"</span>, <span class="st">"3"</span>, <span class="st">"2"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">==</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] TRUE TRUE TRUE</span></code></pre>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">==</span><span class="va">b</span></code></pre></div>
 <pre><code><span class="co">## [1]  TRUE FALSE  TRUE</span></code></pre>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 1 2 3</span>
 <span class="co">## Levels: 1 2 3 4</span></code></pre>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 1 4 3</span>
 <span class="co">## Levels: 1 4 3 2</span></code></pre>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span><span class="op">==</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1]  TRUE FALSE  TRUE</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="date-and-time">Date and time<a class="anchor" aria-label="anchor" href="#date-and-time"></a>
 </h3>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"1971-01-01"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">unclass</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 365</span></code></pre>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "double"</span></code></pre>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## $class</span>
 <span class="co">## [1] "Date"</span></code></pre>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">current_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">current_date</span></code></pre></div>
-<pre><code><span class="co">## [1] "2022-04-12 07:44:00 UTC"</span></code></pre>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">current_date</span>, <span class="st">"%d %b %Y"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "12 Apr 2022"</span></code></pre>
+<pre><code><span class="co">## [1] "2022-05-18 13:43:20 UTC"</span></code></pre>
 <div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">current_date</span>, <span class="st">"%d %b %Y"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "18 May 2022"</span></code></pre>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">current_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">current_date</span><span class="op">-</span><span class="fl">1</span>, <span class="st">"%d %b %Y"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "11 Apr 2022"</span></code></pre>
+<pre><code><span class="co">## [1] "17 May 2022"</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="lists">Lists<a class="anchor" aria-label="anchor" href="#lists"></a>
 </h3>
 <p>Similar to vectors, but can take lists as elements. The elements can have different types.</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>
 <span class="va">a</span></code></pre></div>
 <pre><code><span class="co">## [[1]]</span>
@@ -676,7 +680,7 @@
 <span class="co">## </span>
 <span class="co">## [[3]]</span>
 <span class="co">## [1] 3</span></code></pre>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>, <span class="st">"two"</span>, <span class="st">"three"</span><span class="op">)</span>
 <span class="va">a</span></code></pre></div>
 <pre><code><span class="co">## [[1]]</span>
@@ -687,7 +691,7 @@
 <span class="co">## </span>
 <span class="co">## [[3]]</span>
 <span class="co">## [1] "three"</span></code></pre>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>, <span class="st">"two"</span>, <span class="st">"three"</span><span class="op">)</span>
 <span class="va">a</span></code></pre></div>
 <pre><code><span class="co">## [[1]]</span>
@@ -709,7 +713,7 @@
 <span class="co">## </span>
 <span class="co">## [[3]]</span>
 <span class="co">## [1] "three"</span></code></pre>
-<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#can have names</span>
 
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>numbers<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,letters<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"two"</span>, <span class="st">"three"</span><span class="op">)</span><span class="op">)</span>
@@ -729,21 +733,21 @@
 <span class="co">## </span>
 <span class="co">## [[4]]</span>
 <span class="co">## [1] 4</span></code></pre>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] 1 2</span></code></pre>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] 1</span></code></pre>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">b</span><span class="op">$</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] "two"</span></code></pre>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#functions</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 3</span></code></pre>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">$</span><span class="va">letters</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 0</span></code></pre>
 </div>
@@ -751,7 +755,7 @@
 <h3 id="matrix">Matrix<a class="anchor" aria-label="anchor" href="#matrix"></a>
 </h3>
 <p>Data format to store values in a matrix (rows and columns). The elements can be primitive types. All element has to be the same type.</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">letter_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 
 <span class="va">num_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, nrow<span class="op">=</span><span class="fl">3</span>, ncol<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
@@ -763,45 +767,45 @@
 <span class="co">## [1,]    1   16   49</span>
 <span class="co">## [2,]    4   25   64</span>
 <span class="co">## [3,]    9   36   81</span></code></pre>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">num_mat</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">num_mat</span> <span class="co">#matrix multiplication </span></code></pre></div>
 <pre><code><span class="co">##      [,1] [,2] [,3]</span>
 <span class="co">## [1,]   30   66  102</span>
 <span class="co">## [2,]   36   81  126</span>
 <span class="co">## [3,]   42   96  150</span></code></pre>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span>  <span class="co">#Transpose</span></code></pre></div>
 <pre><code><span class="co">##      [,1] [,2] [,3]</span>
 <span class="co">## [1,]    1    2    3</span>
 <span class="co">## [2,]    4    5    6</span>
 <span class="co">## [3,]    7    8    9</span></code></pre>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># many other matrix specific funtions and operators</span>
 
 <span class="co">#subsetting</span>
 
 <span class="va">letter_mat</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] "b"</span></code></pre>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">letter_mat</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] "a" "b"</span></code></pre>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">letter_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] "a" "a"</span></code></pre>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">letter_mat</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] "a"</span></code></pre>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">letter_mat</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">## [1] "a" "a" "a"</span></code></pre>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#combining</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">letter_mat</span>, <span class="va">num_mat</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##      [,1] [,2] [,3] [,4] [,5]</span>
 <span class="co">## [1,] "a"  "b"  "1"  "4"  "7" </span>
 <span class="co">## [2,] "a"  "b"  "2"  "5"  "8" </span>
 <span class="co">## [3,] "a"  "b"  "3"  "6"  "9"</span></code></pre>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">letter_mat</span>, <span class="va">letter_mat</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##      [,1] [,2]</span>
 <span class="co">## [1,] "a"  "b" </span>
@@ -810,7 +814,7 @@
 <span class="co">## [4,] "a"  "b" </span>
 <span class="co">## [5,] "a"  "b" </span>
 <span class="co">## [6,] "a"  "b"</span></code></pre>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#row and column-wise operations</span>
 <span class="co">#matrixStats package - fast!</span>
 
@@ -818,30 +822,30 @@
 <span class="va">num_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fl">10</span>, ncol<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span>   </code></pre></div>
-<pre><code><span class="co">##  [1] 0.5374033 0.4470609 0.3669063 0.4991926 0.3426144 0.5699368 0.4977102</span>
-<span class="co">##  [8] 0.5041088 0.4721954 0.5150312</span></code></pre>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">matrixStats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/matrixStats/man/rowMeans2.html" class="external-link">rowMeans2</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##  [1] 0.5374033 0.4470609 0.3669063 0.4991926 0.3426144 0.5699368 0.4977102</span>
-<span class="co">##  [8] 0.5041088 0.4721954 0.5150312</span></code></pre>
+<pre><code><span class="co">##  [1] 0.3851638 0.6427088 0.6609717 0.3203019 0.4464088 0.5554319 0.5290633</span>
+<span class="co">##  [8] 0.4225664 0.2569312 0.4657085</span></code></pre>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span>    </code></pre></div>
-<pre><code><span class="co">##  [1] 5.374033 4.470609 3.669063 4.991926 3.426144 5.699368 4.977102 5.041088</span>
-<span class="co">##  [9] 4.721954 5.150312</span></code></pre>
+<code class="sourceCode R"><span class="fu">matrixStats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/matrixStats/man/rowMeans2.html" class="external-link">rowMeans2</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##  [1] 0.3851638 0.6427088 0.6609717 0.3203019 0.4464088 0.5554319 0.5290633</span>
+<span class="co">##  [8] 0.4225664 0.2569312 0.4657085</span></code></pre>
 <div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##  [1] 0.2953414 0.5612160 0.3680333 0.4407976 0.7310227 0.3238281 0.4125048</span>
-<span class="co">##  [8] 0.5543729 0.5329821 0.5320611</span></code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span>    </code></pre></div>
+<pre><code><span class="co">##  [1] 3.851638 6.427088 6.609717 3.203019 4.464088 5.554319 5.290633 4.225664</span>
+<span class="co">##  [9] 2.569312 4.657085</span></code></pre>
 <div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##  [1] 0.3228825 0.4540523 0.4353427 0.5532767 0.5179125 0.5816021 0.5123537</span>
+<span class="co">##  [8] 0.2864224 0.5966993 0.4247122</span></code></pre>
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">num_mat</span><span class="op">)</span>    </code></pre></div>
-<pre><code><span class="co">##  [1] 2.953414 5.612160 3.680333 4.407976 7.310227 3.238281 4.125048 5.543729</span>
-<span class="co">##  [9] 5.329821 5.320611</span></code></pre>
+<pre><code><span class="co">##  [1] 3.228825 4.540523 4.353427 5.532767 5.179125 5.816021 5.123537 2.864224</span>
+<span class="co">##  [9] 5.966993 4.247122</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="data-frame">Data frame<a class="anchor" aria-label="anchor" href="#data-frame"></a>
 </h3>
 <p>2D object type. Rows and columns with names. The columns can have different element types.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>value<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, <span class="st">"First name"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"John"</span>, <span class="st">"John"</span>, <span class="st">"Peter"</span><span class="op">)</span><span class="op">)</span>, last_name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Smith"</span>, <span class="st">"Black"</span>, <span class="st">"Rabbit"</span><span class="op">)</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient 1"</span>, <span class="st">"Patient 2"</span>, <span class="st">"Patient 3"</span><span class="op">)</span><span class="op">)</span>
 
 
@@ -849,17 +853,17 @@
 <pre><code><span class="co">##           value First.name last_name</span>
 <span class="co">## Patient 1     1       John     Smith</span>
 <span class="co">## Patient 2     2       John     Black</span></code></pre>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,<span class="op">]</span></code></pre></div>
 <pre><code><span class="co">##           value First.name last_name</span>
 <span class="co">## Patient 1     1       John     Smith</span>
 <span class="co">## Patient 2     2       John     Black</span></code></pre>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient 1"</span>, <span class="st">"Patient 2"</span><span class="op">)</span>,<span class="op">]</span></code></pre></div>
 <pre><code><span class="co">##           value First.name last_name</span>
 <span class="co">## Patient 1     1       John     Smith</span>
 <span class="co">## Patient 2     2       John     Black</span></code></pre>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[</span><span class="op">-</span><span class="fl">3</span>,<span class="op">]</span></code></pre></div>
 <pre><code><span class="co">##           value First.name last_name</span>
 <span class="co">## Patient 1     1       John     Smith</span>
@@ -879,7 +883,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>
